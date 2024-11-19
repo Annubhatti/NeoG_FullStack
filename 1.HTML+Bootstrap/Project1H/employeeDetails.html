@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1><a href="">Company Logo</a></h1>
+    </header>
+    <main>
+        <section>
+            <nav>
+               <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Employee</a></li>
+               </ul>
+            
+            </nav>
+        </section>
+    </main>
+    <footer></footer>
+    <script>
+
+        // database
+
+        let employees = [
+            {id:"1", name:"Johan Doe", title: "Software Developer", department: "IT"},
+            {
+                id:"1", name:"Johan Doe", title: "Software Developer", department: "IT"
+            },
+            {id:"1", name:"Johan Doe", title: "Software Developer", department: "IT"}
+        ]
+
+        function getParameterById(id){
+            // get the id from the url
+            console.log(window.location.href)
+            let url  =new URL(window.location.href)
+
+            console.log(typeof url)
+
+            console.log(url.searchParams.get(id))
+        }
+
+        let employeeId  = getParameterById('id')
+
+        // finfd that id in the database
+        let employees;
+        for(int i=0;i<employees;i++)
+        {
+            if(employees[i]==employeeId)
+        {
+            employee  = employees[i]
+        }
+        }
+
+        // display the details 
+        let employeeDetailElement = document.get
+        if(employee)
+        {
+            let emplo
+        }
+    </script>
+</body>
+</html>

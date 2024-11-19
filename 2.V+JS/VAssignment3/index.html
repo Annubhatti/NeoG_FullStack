@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="favdbookTextarea">Enter your favorite book list:</label>
+    <textarea id="favdbookTextarea" rows="4" cols="50"></textarea>
+    <button id="displayBookBtn">Display Book List</button>
+    <p id="displayBookResult"></p>
+
+    <label for="recipeTextarea">Enter your recipe:</label>
+    <textarea id="recipeTextarea"></textarea>
+    <button id="recipeBtn">Display Recipe</button>
+    <p id="DisplayRecipeResult"></p>
+
+    <label for="bioTextarea">Enter your personal bio:</label>
+    <textarea id="bioTextarea"></textarea>
+    <button id="bioDisplayBtn">Display Bio</button>
+    <p id="bioResult"></p>
+
+    <label for="goalTextarea">Enter your list of goals:</label>
+    <textarea id="goalTextarea"></textarea>
+    <button id="goalBtn">Display Goals</button>
+    <p id="goalResult"></p>
+
+    <label for="storyTextarea">Enter a short story or anecdote:</label>
+    <textarea id="storyTextarea"></textarea>
+    <button id="storyDisplayBtn">Display Story</button>
+    <p id="storyResult"></p>
+
+    <script>
+        const favdbookTextarea = document.getElementById("favdbookTextarea")
+        const displayBookBtn = document.getElementById("displayBookBtn")
+        const displayBookResult = document.getElementById("displayBookResult")
+
+        displayBookBtn.addEventListener("click", function(){
+            const book = favdbookTextarea.value
+            displayBookResult.textContent = `Feedback: ${book}`
+        })
+
+        const recipeTextarea = document.getElementById("recipeTextarea")
+        const recipeBtn = document.getElementById("recipeBtn")
+        const DisplayRecipeResult = document.getElementById("addressResult")
+
+        recipeBtn.addEventListener("click", function(){
+            const recipe = recipeTextarea.value
+            DisplayRecipeResult.textContent = `Your Address: ${recipe}`
+        })
+
+        const descriptionTextarea = document.getElementById("descriptionTextarea")
+        const descriptionDisplayBtn = document.getElementById("descriptionDisplayBtn")
+        const descriptionResult = document.getElementById("descriptionResult")
+
+        descriptionDisplayBtn.addEventListener("click", function(){
+            const description = descriptionTextarea.value
+            descriptionResult.textContent = `Description: ${description}`
+        })
+
+        const goalTextarea = document.getElementById("goalTextarea")
+        const goalBtn = document.getElementById("goalBtn")
+        const goalResult = document.getElementById("goalResult")
+
+        goalBtn.addEventListener("click", function(){
+            const goal = goalTextarea.value
+            goalResult.textContent = `Your Address: ${goal}`
+        })
+
+        const storyTextarea = document.getElementById("storyTextarea")
+        const storyDisplayBtn = document.getElementById("storyDisplayBtn")
+        const storyResult = document.getElementById("storyResult")
+
+        storyDisplayBtn.addEventListener("click", function(){
+            const story = storyTextarea.value
+            storyResult.textContent = `Description: ${story}`
+        })
+
+    </script>
+
+</body>
+</html>

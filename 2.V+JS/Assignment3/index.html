@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    
+    <label for="countryInput">Enter your country:</label>
+    <input type="text" id="countryInput" />
+    <button id="displayCountryBtn">Display Country</button>
+    <p id="displayCountryResult"></p>
+
+    <label for="websiteInput">Enter a website name:</label>
+    <input type="text" id="websiteInput" />
+    <button id="displayMsgBtn">Display Heading</button>
+    <p id="displayMsgResult"></p>
+
+    <label for="nameSInput">Are you a student?:</label>
+    <input type="text" id="nameSInput" />
+    <button id="responseBtn">Display Response</button>
+    <p id="checkResponse"></p>
+
+    <label for="ageInput">Enter your age:</label>
+    <input type="text" id="ageInput" />
+    <button id="validateAgeBtn">Check Age</button>
+    <p id="showValidateAgeResult"></p>
+
+    <script>
+        
+        const CountryInput = document.getElementById("countryInput");
+        const DisplayCountryBtn = document.getElementById("displayCountryBtn");
+        const DisplayCountryResult = document.getElementById("displayCountryResult");
+        
+        DisplayCountryBtn.addEventListener("click", function () {
+            const userCountry = CountryInput.value
+            DisplayCountryResult.textContent = `Your country is: ${userCountry}`
+        });
+        
+        const WebsiteInput = document.getElementById("websiteInput");
+        const DisplayBtn = document.getElementById("displayMsgBtn");
+        const DisplayMsg = document.getElementById("displayMsgResult");
+        DisplayBtn.addEventListener("click", function () {
+            const userWeb = WebsiteInput.value
+            DisplayMsg.textContent = `HERE:${userWeb}`
+        });
+        
+        const DisplayMsgInput = document.getElementById("displayMsgInput");
+        const DisplayMsgBtn = document.getElementById("displayMsgBtn");
+        const DisplayMsgResult = document.getElementById("displayMsgResult");
+        DisplayMsgBtn.addEventListener("click", function () {
+            const userMsg =  DisplayMsgInput.value
+        DisplayMsgResult.textContent = `You said ${userMsg}`
+      });
+      
+      const NameSInput = document.getElementById("nameSInput");
+      const ResponseBtn = document.getElementById("responseBtn");
+      const CheckResponse = document.getElementById("checkResponse");
+      
+      ResponseBtn.addEventListener("click", function () {
+          const userStudent = NameSInput.value;
+        if (userStudent === "Yes" || userStudent === "No") {
+            CheckResponse.textContent ="Valid Response."
+        }else{
+            CheckResponse.textContent ="Invalid Response. Please enter 'Yes' or 'No'"
+        }
+      });
+      
+
+      const AgeInput = document.getElementById("ageInput");
+      const ValidateAgeBtn = document.getElementById("validateAgeBtn");
+      const ShowValidateAgeResult = document.getElementById(
+        "showValidateAgeResult"
+      );
+    
+      ValidateAgeBtn.addEventListener("click", function () {
+        const userAge = AgeInput.value;
+    
+        if (userAge > 18) {
+          ShowValidateAgeResult.textContent = `You are Adult:${userAge}`;
+        } else {
+          ShowValidateAgeResult.textContent =
+            "Invalid age. Please enter an age between 18 and 100.";
+        }
+      });
+      
+      </script>
+  </body>
+  </html>
