@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Data</title>
+  </head>
+  <body>
+    <label for="inputAge">Enter your age:</label>
+    <input type="text" id="inputAge" />
+    <button id="displayAge">Display Age</button>
+    <button id="checkEligibility">Check Eligibility</button>
+    <p id="displayAgeResult"></p>
+
+    <label for="studentCheck">Are you a student?</label>
+    <input type="text" id="studentCheck" />
+    <button id="displayAnswer">Display Answer</button>
+    <button id="checkStuEligibility">Check Eligibility</button>
+    <p id="displayStudentResult"></p>
+
+    <label for="inputPassword">Enter password:</label>
+    <input type="text" id="inputPassword" />
+    <button id="displayPassword">Display Password</button>
+    <button id="checkPassword">Check Password</button>
+    <p id="displayPasswordResult"></p>
+
+    <script>
+      const InputAge = document.getElementById("inputAge");
+      const DisplayAge = document.getElementById("displayAge");
+      const CheckEligibility = document.getElementById("checkEligibility");
+      const DisplayAgeResult = document.getElementById("displayAgeResult");
+
+      DisplayAge.addEventListener("click", function () {
+        const age = InputAge.value;
+        DisplayAgeResult.textContent = `Your Age: ${age}`;
+      });
+
+      CheckEligibility.addEventListener("click", function () {
+        const ageCheck = InputAge.value;
+
+        if (ageCheck >= 18) {
+          DisplayAgeResult.textContent = `Your are Adult: ${ageCheck}`;
+        } else {
+          DisplayAgeResult.textContent = `Your are not Adult: ${ageCheck}`;
+        }
+      });
+
+      const studentCheck = document.getElementById("studentCheck");
+      const displayAnswer = document.getElementById("displayAnswer");
+      const checkStuEligibility = document.getElementById(
+        "checkStuEligibility"
+      );
+      const displayStudentResult = document.getElementById(
+        "displayStudentResult"
+      );
+
+      displayAnswer.addEventListener("click", function () {});
+
+      checkStuEligibility.addEventListener("click", function () {});
+
+      const inputPassword = document.getElementById("inputPassword");
+      const displayPassword = document.getElementById("displayPassword");
+      const checkPassword = document.getElementById("checkPassword");
+      const displayPasswordResult = document.getElementById(
+        "displayPasswordResult"
+      );
+
+      displayPassword.addEventListener("click", function () {});
+
+      displayPasswordResult.addEventListener("click", function () {});
+    </script>
+  </body>
 </html>
