@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+
+    <label for="">Choose a season:</label>
+    <select name="" id="selectSeason">
+      <option value="Spring">Spring</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Drama">Drama</option>
+    </select>
+    <button>Display Greeting</button>
+    <p id="seasonResult"></p>
+
+    <label for="">Choose a movie genre:</label>
+    <select name="" id="selectMovie">
+      <option value="Science Fiction">Science Fiction</option>
+      <option value="Mystery">Mystery</option>
+      <option value="Rommance">Rommance</option>
+    </select>
+    <button>Display Movie Recommendation</button>
+    <p id="selectedMovieResult"></p>
+
+    <label for="">Select a pet:</label>
+    <select id="selectPet">
+      <option value="Dog">Dog</option>
+      <option value="Cat">Cat</option>
+      <option value="Fish">Fish</option>
+    </select>
+    <button>Display Pet Description</button>
+    <p id="selectedPetResult"></p>
+
+    <label for="">Choose a musical instruments:</label>
+    <select id="selectInstruments">
+      <option value="Piano">Piano</option>
+      <option value="Guitar">Guitar</option>
+      <option value="Violin">Violin</option>
+    </select>
+    <p id="instrumentsResult"></p>
+
+    <label for="">Choose a planet:</label>
+    <select id="selectPlanet">
+      <option value="Earth">Earth</option>
+      <option value="Mars">Mars</option>
+      <option value="Jupitar">Jupitar</option>
+    </select>
+    <button>Display Planet Fact</button>
+    <p id="planetResult"></p>
+
+    <script>
+
+      const selectSeason = document.getElementById("selectSeason");
+      const seasonResult = document.getElementById("seasonResult");
+
+      selectSeason.addEventListener("change", function () {
+        const selectedSeason = selectSeason.value;
+        seasonResult.textContent = `Typical  Weather:${selectedSeason}`;
+      });
+
+      const movieSelect = document.getElementById("selectMovie");
+      const selectedMovieResult = document.getElementById(
+        "selectedMovieResult"
+      );
+
+      movieSelect.addEventListener("change", function () {
+        const selectedMovie = movieSelect.value;
+        selectedMovieResult.textContent = `Movie Recommended ${selectedMovie} Movie:`;
+      });
+
+      const petSelect = document.getElementById("selectPet");
+      const selectedPetResult = document.getElementById("selectedPetResult");
+
+      petSelect.addEventListener("change", function () {
+        const selectedPets = petSelect.value;
+        selectedPetResult.textContent = `Fun Facts: ${selectedPets} are independent and playful`;
+      });
+
+      const instrumentsSelect = document.getElementById("selectInstruments");
+      const instrumentsResult = document.getElementById("instrumentsResult");
+
+      instrumentsSelect.addEventListener("change", function () {
+        const selectedInstrument = instrumentsSelect.value;
+        instrumentsResult.textContent = `Sound: The ${selectedInstrument} is produces melodic tones with its strings`;
+      });
+
+
+      const planetSelect = document.getElementById("selectPlanet");
+      const planetResult = document.getElementById("planetResult");
+
+      planetSelect.addEventListener("change", function () {
+        const selectedPlanet = planetSelect.value;
+        planetResult.textContent = `Planet Fact: ${selectedPlanet} once is called 'Red Planet' due to its color.`;
+      });
+
+
+      
+    </script>
+  </body>
+</html>
