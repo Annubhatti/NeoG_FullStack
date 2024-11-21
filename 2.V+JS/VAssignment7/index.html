@@ -1,76 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" type="text/css" />
-</head>
-<body>
+  </head>
+  <body>
     <h1>User Profile Form</h1>
 
     <form id="userProfileForm">
-    <label for="userName">Enter Your Name:</label><br>
-    <input type="text" id="userName" />
-    <br><br>
+      <label for="userName">Enter Your Name:</label><br />
+      <input type="text" id="userName" />
+      <br /><br />
 
-    <label for="fullAddress">Enter Your Full Address:</label><br>
-    <textarea id="fullAddress" rows="5" cols="30"></textarea>
-    <br><br>
+      <label for="fullAddress">Enter Your Full Address:</label><br />
+      <textarea id="fullAddress" rows="5" cols="30"></textarea>
+      <br /><br />
 
-    <label>Select Your Gender:</label><br>
-    <label for="male"><input type="radio" name="gender" value="Male" id="male"/> Male</label><br>
-    <label for="female"><input type="radio" name="gender" value="Female" id="female"/> Female</label><br>
-    <label for="other"><input type="radio" name="gender" value="Other" id="other" /> Other</label><br>
-    <br>
+      <label>Select Your Gender:</label><br />
+      <label for="male"
+        ><input type="radio" name="gender" value="Male" id="male" /> Male</label
+      ><br />
+      <label for="female"
+        ><input type="radio" name="gender" value="Female" id="female" />
+        Female</label
+      ><br />
+      <label for="other"
+        ><input type="radio" name="gender" value="Other" id="other" />
+        Other</label
+      ><br />
+      <br />
 
-    <label>Select multiple Interests:</label><br>
-    <label for="reading"><input type="checkbox" name="interests" value="Reading" id="reading" />Reading</label><br>
-    <label for="gardening"><input type="checkbox" name="interests" value="Gardening" id="gardening" />Gardening</label><br>
-    <label for="painting"><input type="checkbox" name="interests" value="Painting" id="painting" />Painting</label><br>
+      <label>Select multiple Interests:</label><br />
+      <label for="reading"
+        ><input
+          type="checkbox"
+          name="interests"
+          value="Reading"
+          id="reading"
+        />Reading</label
+      ><br />
+      <label for="gardening"
+        ><input
+          type="checkbox"
+          name="interests"
+          value="Gardening"
+          id="gardening"
+        />Gardening</label
+      ><br />
+      <label for="painting"
+        ><input
+          type="checkbox"
+          name="interests"
+          value="Painting"
+          id="painting"
+        />Painting</label
+      ><br />
 
-    <label>Select Favourite Color:</label><br>
-    <select id="colorSelect">
+      <label>Select Favourite Color:</label><br />
+      <select id="colorSelect">
         <option value="Red">Red</option>
         <option value="Blue">Blue</option>
         <option value="Green">Green</option>
-    </select>
-    <br><br>
-    <input type="submit" value="Submit" />
-</form>
+      </select>
+      <br /><br />
+      <input type="submit" value="Submit" />
+    </form>
 
-<div id="formResult"></div>
+    <div id="formResult"></div>
 
-<script>
-    const userProfileForm = document.getElementById("userProfileForm");
-    userProfileForm.addEventListener("submit", function(event){
-
-        event.preventDefault() // 
+    <script>
+      const userProfileForm = document.getElementById("userProfileForm");
+      userProfileForm.addEventListener("submit", function (event) {
+        event.preventDefault(); //
 
         const userName = document.getElementById("userName").value;
-        const fullAdress = document.getElementById("fullAddress").value;
-        const gender = document.querySelector('input[name="gender"]:checked').value;
+        const fullAddress = document.getElementById("fullAddress").value;
+        const gender = document.querySelector(
+          'input[name="gender"]:checked'
+        ).value;
 
-        const interests = document.querySelectorAll('input[name="interests"]:checked');
-        let selectedInterests = []
-        for(let i=0;i<interests.length;i++){
-            selectedInterests.push(interests[i].value)
+        const interests = document.querySelectorAll(
+          'input[name="interests"]:checked'
+        );
+        let selectedInterests = [];
+        for (let i = 0; i < interests.length; i++) {
+          selectedInterests.push(interests[i].value);
         }
 
-        const favColor = document.getElementById("colorSelect").value
-        
+        const favColor = document.getElementById("colorSelect").value;
+
         console.log(selectedInterests, favColor);
         const userInputValues = `<h2>Submitted Information</h2>
         <p>Name: ${userName}</p>
-        <p>Full Address: ${fullAdress}</p>
+        <p>Full Address: ${fullAddress}</p>
         <p>Gender: ${gender}</p>
-        <p>Interests: ${selectedInterests.join(', ')}</p>
-        <p>Favourite Color: ${favColor}</p>`
+        <p>Interests: ${selectedInterests.join(", ")}</p>
+        <p>Favourite Color: ${favColor}</p>`;
 
-        const divElement = document.getElementById("formResult")
-        divElement.innerHTML = userInputValues
-
-    })
-</script>
-</body>
+        const divElement = document.getElementById("formResult");
+        divElement.innerHTML = userInputValues;
+      });
+    </script>
+  </body>
 </html>
