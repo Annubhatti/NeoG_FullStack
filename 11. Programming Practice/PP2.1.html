@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Colors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <label for="colorInput">Enter Color:</label>
+    <input type="text" placeholder="e.g, #00fff00" id="colorInput" />
+    <button id="changeColor1">Change Color Section 1</button>
+    <button id="changeColor2">Change Color Section 2</button>
+        <div id="text1">Section 1</div>
+        <div id="text2">Section 2</div>
+
+    <script>
+        // if  i don't enter anything it show 
+        // Invalid color format. Please enter a valid color(e.g.,#00fff00).
+
+    
+        const btn1 = document.getElementById('changeColor1');
+        const btn2 = document.getElementById('changeColor2');
+        const text1 = document.getElementById('text1');
+        const text2 = document.getElementById('text2');
+        const colorInput = document.getElementById('colorInput');
+
+        // Function to change the background color
+        function changeBackgroundColor(element) {
+            const colorCode = colorInput.value.trim();
+            if (/^#[0-9A-Fa-f]{6,8}$/.test(colorCode)) { // Validate color code format
+                element.style.backgroundColor = colorCode;
+            } else {
+                alert('Please enter a valid color code in the format #RRGGBB or #RRGGBBAA.');
+            }
+        }
+
+        // Event listeners for buttons
+        btn1.addEventListener('click', () => changeBackgroundColor(text1));
+        btn2.addEventListener('click', () => changeBackgroundColor(text2));
+    </script>
+
+   
+</body>
+</html>

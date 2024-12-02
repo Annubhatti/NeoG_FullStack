@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poll Voting</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .result-container {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="container py-3">
+      <h1>Poll Voting</h1>
+    </header>
+    <section class="container py-3">
+      <label>
+        John Doe:
+        <input type="radio" name="voting" value="John Doe" id="john" />
+      </label>
+      <br /><br />
+      <label>
+        Alex Willam:
+        <input type="radio" name="voting" value="Alex Willam" id="alex" />
+      </label>
+      <br /><br />
+      <label>
+        Prerana Nawar:
+        <input type="radio" name="voting" value="Prerana Nawar" id="prerana" />
+      </label>
+      <br /><br />
+      <button class="voteBtn btn btn-primary" id="voteBtn">Vote</button>
+    </section>
+
+    <section class="container py-3">
+      <h2>Results:</h2>
+      <div id="results" class="result-container"></div>
+
+      <p id="winner" style="margin-top: 10px;"><h3>Winner:</h3></p>
+    </section>
+
+    <script>
+      // Initialize vote counts
+      const voteCounts = {
+        "John Doe": 0,
+        "Alex Willam": 0,
+        "Prerana Nawar": 0,
+      };
+
+      // Event listener for the vote button
+      document.getElementById("voteBtn").addEventListener("click", function () {
+        // Get the selected candidate
+        const selectedCandidate = document.querySelector(
+          'input[name="voting"]:checked'
+        );
+
+        if (!selectedCandidate) {
+          alert("Please select a candidate to vote!");
+          return;
+        }
+
+        const voterName = selectedCandidate.value;
+
+        // Increment the vote count
+        voteCounts[voterName]++;
+
+        // Update the results
+        
+        const resultsContainer = document.getElementById("div");
+        resultsContainer.innerHTML = ""; // Clear previous results
+
+        // Add transaction container to the transaction list
+        document.getElementById("results").appendChild(resultsContainer);
+
+        for (const candidate in voteCounts) {
+          if (voteCounts[candidate] > 0) {
+            const voteResult = document.createElement("span");
+            voteResult.textContent = `${candidate}: ${voteCounts[candidate]}`;
+            resultsContainer.appendChild(voteResult);
+          }
+        }
+
+        // Determine the winner
+        let maxVotes = 0;
+        let winnerName = "";
+        for (const candidate in voteCounts) {
+          if (voteCounts[candidate] > maxVotes) {
+            maxVotes = voteCounts[candidate];
+            winnerName = candidate;
+          }
+        }
+
+        // Update the winner section
+        const winnerElement = document.getElementById("winner");
+        winnerElement.textContent = `${winnerName} is winning ${voteCounts[candidate]} votes!`;
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

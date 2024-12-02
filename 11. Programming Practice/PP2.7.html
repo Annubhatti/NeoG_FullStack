@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Voting</h1>
+    <!-- Unique IDs for buttons -->
+    <button type="button" id="voteJohn" class="btn btn-primary">Vote for John</button>
+    <button type="button" id="voteAlice" class="btn btn-success">Vote for Alice</button>
+    <h2 class="mt-4">Vote count for John:</h2>
+    <p id="countJohn">0</p>
+    <h2>Vote count for Alice:</h2>
+    <p id="countAlice">0</p>
+
+    <script>
+        // Initialize vote counts
+        let countJohn = 0;
+        let countAlice = 0;
+
+        // Event listener for John's button
+        document.getElementById("voteJohn").addEventListener("click", () => {
+            countJohn++;
+            document.getElementById("countJohn").textContent = countJohn;
+        });
+
+        // Event listener for Alice's button
+        document.getElementById("voteAlice").addEventListener("click", () => {
+            countAlice++;
+            document.getElementById("countAlice").textContent = countAlice;
+        });
+    </script>
+</body>
+</html>

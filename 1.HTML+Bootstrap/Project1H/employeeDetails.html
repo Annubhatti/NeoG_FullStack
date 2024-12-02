@@ -25,33 +25,27 @@
 
         // database
 
-        let employees = [
+        let Database = [
             {id:"1", name:"Johan Doe", title: "Software Developer", department: "IT"},
-            {
-                id:"1", name:"Johan Doe", title: "Software Developer", department: "IT"
-            },
+            {id:"1", name:"Johan Doe", title: "Software Developer", department: "IT"},
             {id:"1", name:"Johan Doe", title: "Software Developer", department: "IT"}
         ]
 
         function getParameterById(id){
             // get the id from the url
-            console.log(window.location.href)
             let url  =new URL(window.location.href)
-
-            console.log(typeof url)
-
-            console.log(url.searchParams.get(id))
+            return url.searchParams.get(id)
         }
 
         let employeeId  = getParameterById('id')
 
         // finfd that id in the database
         let employees;
-        for(int i=0;i<employees;i++)
+        for(let i=0;i<Database;i++)
         {
-            if(employees[i]==employeeId)
+            if(Database[i]==employeeId)
         {
-            employee  = employees[i]
+            employee  = Database[i]
         }
         }
 

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Registration Form</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="container mt-4">
+    <h1>Job Application Form</h1>
+
+    <form id="eventRegistrationForm">
+
+      <label for="userName">Name:</label><br>
+      <input type="text" id="userName" />
+      <br /><br>
+
+      <label for="userEmail">Email:</label><br>
+      <input type="text" id="userEmail" />
+      <br /><br />
+
+      <label for="uploadResume">Upload Resume:</label><br>
+      <input type="file" id="uploadResume" />
+      <br /><br />
+
+      <label>Position Applied For:</label>
+      <select id="typeSelect">
+        <option value="software">Software Engineer</option>
+        <option value="analyst">Data Analyst</option>
+        <option value="marketing">Marketing Specialist</option>
+        <option value="graphic">Graphic Designer</option>
+        <option value="hrManager">HR Manager</option>
+      </select>
+      <br /><br />
+
+      <label>Years of Experience:</label><br>
+      <label for="individual">
+        <input type="radio" name="eventType" value="Individual" id="individual"/>0-2 years</label> <br>
+      <label for="group">
+        <input type="radio" name="eventType" value="Group" id="group" /> 2-5 years</label> <br> 
+   
+    <label for="group">
+        <input type="radio" name="eventType" value="Group" id="group" /> 5+ years</label>
+        <br /><br />
+            
+        <label>Skills(Check all that apply):</label><br />
+      <label for="programming">
+        <input
+          type="checkbox"
+          name="language"
+          value="Programming"
+          id="programming"
+        />Programming</label
+      ><br />
+      <label for="communication">
+        <input
+          type="checkbox"
+          name="language"
+          value="Communication"
+          id="communication"
+        />Communication</label
+      ><br />
+      <label for="teamwork">
+        <input
+          type="checkbox"
+          name="language"
+          value="Teamwork"
+          id="teamwork"
+        />Teamwork</label
+      ><br />
+      <label for="problemSolving">
+        <input
+          type="checkbox"
+          name="language"
+          value="ProblemSolving"
+          id="problemSolving"
+        />Problem Solving</label
+      ><br /><br>
+      
+        <label for="additionalInfo">Additional Information:</label><br />
+        <textarea id="additionalInfo" rows="3" cols="80"></textarea> <br>
+         <br>
+      <button type="submit" class="btn btn-primary" >Submit</button>
+    </form>
+    
+    <div id="formResult"></div>
+
+    <script>
+      const eventRegistrationForm = document.getElementById(
+        "eventRegistrationForm"
+      );
+      eventRegistrationForm.addEventListener("submit", function (event) {
+        event.preventDefault(); //
+
+        const userName = document.getElementById("userName").value;
+        const userEmail = document.getElementById("userEmail").value;
+        const typeSelected = document.getElementById("typeSelect").value;
+        // Extract the selected resume file
+        const uploadResume = document.getElementById("uploadResume");
+        const resumeFile = uploadResume.files.length
+          ? uploadResume.files[0].name
+          : "No file selected";
+
+        const additionalInfo = document.querySelector("#additionalInfo").value;
+        const eventType = document.querySelector(
+          'input[name="eventType"]:checked'
+        ).value;
+
+        const language = document.querySelectorAll(
+          'input[name="language"]:checked'
+        );
+        let selectedLanguage = [];
+        for (let i = 0; i < language.length; i++) {
+            selectedLanguage.push(language[i].value);
+        }
+
+        // Display submitted values
+        const userInputValues = `<h2>Registration Submitted:</h2>
+        <p><strong>Name:</strong> ${userName}</p>
+        <p><strong>Email:</strong> ${userEmail}</p>
+        <p><strong>Resume File:</strong> ${resumeFile}</p>
+        <p><strong>Position Applied For:</strong> ${typeSelected}</p>
+        <p><strong>Years of Experience:</strong> ${eventType}</p>
+        <p><strong>Skills:</strong> ${selectedLanguage.join(", ")}</p>
+        <p><strong>Additional Information:</strong> ${additionalInfo}</p>`;
+
+        const divElement = document.getElementById("formResult");
+        divElement.innerHTML = userInputValues;
+      });
+    </script>
+  </body>
+</html>
+
+

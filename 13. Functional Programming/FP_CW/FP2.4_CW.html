@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="all"
+      ><input type="radio" id="all" value="all" name="genre" />all</label
+    >
+    <label for="action"
+      ><input
+        type="radio"
+        id="action"
+        value="action"
+        name="genre"
+      />action</label
+    >
+    <label for="comedy"
+      ><input
+        type="radio"
+        id="comedy"
+        value="comedy"
+        name="genre"
+      />comedy</label
+    >
+    <label for="drama"
+      ><input type="radio" id="drama" value="drama" name="genre" />drama</label
+    >
+
+    <ul id="movieList"></ul>
+
+    <script>
+      const movies = [
+        { id: 1, title: "Movie 1", genre: "action" },
+        { id: 2, title: "Movie 2", genre: "comedy" },
+        { id: 3, title: "Movie 3", genre: "drama" },
+        { id: 4, title: "Movie 4", genre: "action" },
+        { id: 5, title: "Movie 5", genre: "comedy" },
+      ];
+
+      const movieListContainer = document.querySelector("#movieList");
+      const filterRadioButtons = document.getElementsByName("genre");
+
+      function renderMovies(selectedGenre) {
+
+        const filteredMovies = selectedGenre === 'all' ? movies : movies.filter(movie => movie.genre === selectedGenre)
+        const movieListHTML = filteredMovies.map(
+          (movie) => `
+        <li>
+            <strong>ID:</strong> ${movie.id}<br>
+            <strong>Title:</strong> ${movie.title}<br>
+            <strong>Genre:</strong> ${movie.genre}<br>
+            <hr>
+        </li>
+            `
+        );
+        movieListContainer.innerHTML = movieListHTML.join("");
+      }
+
+      renderMovies("all");
+      // foreach doest return new array
+      filterRadioButtons.forEach((radioBtn) => {
+        radioBtn.addEventListener("change", function () {
+          renderMovies(this.value);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      #loading{
+        display: none;
+      }
+      #success{
+        display: none;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Student Management</a>
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="student.html"
+              >Student List</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#addStudent.html">Add Student</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-3">
+      <h1 class="mt-3">Add Student</h1>
+    </div>
+
+    <form id="registerForm">
+      <div class="container mt-3">
+        <div class="mb-3">
+          <label for="name">Name:</label><br>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="age">Age:</label><br />
+          <input type="number" id="age" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label for="gender">Gender:</label>
+          <select id="gender" class="form-select">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="grade">Grade:</label>
+          <input type="text" id="grade" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="marks">Marks:</label><br />
+          <input type="number" id="marks" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label for="attendance">Attendence:</label><br />
+          <input type="text" id="attendance" class="form-control" />
+        </div>
+        <button type="submit" id="addStudentBtn" class="btn btn-primary">
+          Add Student
+        </button>
+      </div>
+    </form>
+
+    
+    <div id="responseContainer" class="mt-3"></div>
+    <div class="container">
+      <div id="loading">Adding student Data...</div>
+      <div id="success">Student added successfully!</div>
+    </div>
+    
+    <script>
+      const name = document.querySelector("#name")
+      const age = document.querySelector("#age")
+      const gender = document.querySelector("#gender")
+      const grade = document.querySelector("#grade")
+      const marks = document.querySelector("#marks")
+      const attendance  = document.querySelector("#attendance")
+      const loadingContainer = document.querySelector("#loading");
+      const successContainer = document.querySelector("#success");
+      const registerForm = document.querySelector("#registerForm")
+
+      const apiUrl =  'https://student-data-Student-neoG-Ca.replit.app/students' 
+
+      registerForm.addEventListener("submit", function(event){
+        event.preventDefault()
+        loadingContainer.style.display = "block"
+
+        const studentData = {
+          name : name.value,
+          age : age.value,
+          gender : gender.value,
+          grade : grade.value,
+          marks  : marks.value,
+          attendance : attendance.value,
+
+        }
+
+        fetch(apiUrl, {
+          method: "POST",
+          body: JSON.stringify(studentData),
+          headers: {
+            "Content-Type": "application/json",
+          }
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            if (data) {
+              loadingContainer.style.display = "none";
+              successContainer.style.display = "block";
+            }
+          })
+          .catch((error) => {
+            loadingContainer.style.display = "none";
+            console.error("Error:", error);
+          });
+    })
+
+    </script>
+  </body>
+</html>

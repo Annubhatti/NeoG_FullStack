@@ -1,0 +1,33 @@
+<!--- display data on Dom by looping over array of objects ---->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Catalog</title>
+  </head>
+  <body>
+    <h1>Product Catalog</h1>
+    <div id="productList"></div>
+
+    <script>
+      const products = [
+        { id: 1, name: "Laptop", price: 19999 },
+        { id: 2, name: "SmartPhone", price: 29867 },
+        { id: 3, name: "Headphone", price: 354365 },
+        { id: 4, name: "Tablet", price: 45677 },
+      ];
+
+      const productListstringDiv = document.getElementById("#productList");
+
+      const productListHTML = products.map((product) => `
+        <div>
+            <strong>ID:</strong> ${product.id}<br>
+            <strong>Name:</strong> ${product.name}<br>
+            <strong>Price:</strong> ${product.price}
+            <hr>
+        </div>`);
+        productListstringDiv.innerHTML = productListHTML.join('');
+    </script>
+  </body>
+</html>

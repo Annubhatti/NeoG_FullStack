@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Destinations</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      #successMessage {
+        color: green;
+        margin-top: 10px;
+      }
+      .errorMessage {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body class="container mt-4">
+    <h1>Travel Destinations</h1>
+    <button id="getDataBtn" class="btn btn-primary">Get Destinations</button>
+    <div id="getDataContainer" class="mt-3"></div>
+
+    <form id="postDataForm" class="mt-4">
+      <h2>Add a New Destination</h2>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" id="name" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Location:</label>
+        <input type="text" id="location" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea id="description" class="form-control" rows="3" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="rating" class="form-label">Rating:</label>
+        <input type="number" id="rating" class="form-control" min="1" max="5" required />
+      </div>
+      <button id="addDestinationBtn" type="button" class="btn btn-success">
+        Add Destination
+      </button>
+    </form>
+
+    <div id="successMessage" class="mt-3"></div>
+    <div id="errorMessage" class="errorMessage"></div>
+
+    <script>
+      const apiUrl = "https://tripy-express-student-neog.replit.app/destinations";
+
+      // DOM Elements
+      const name = document.getElementById("name");
+      const location = document.getElementById("location");
+      const description = document.getElementById("description");
+      const rating = document.getElementById("rating");
+      const getDataBtn = document.getElementById("getDataBtn");
+      const getDataContainer = document.getElementById("getDataContainer");
+      const addDestinationBtn = document.getElementById("addDestinationBtn");
+      const successMessage = document.getElementById("successMessage");
+      const errorMessage = document.getElementById("errorMessage");
+
+      // Get Destinations
+      getDataBtn.addEventListener("click", () => {
+        getDataContainer.innerHTML = ""; // Clear container before fetching data
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            if (Array.isArray(data) && data.length > 0) {
+              data.forEach((destination) => {
+                const destinationCard = document.createElement("div");
+                destinationCard.classList.add("card", "mb-2");
+                destinationCard.innerHTML = `
+                  <div class="card-body">
+                    <h5 class="card-title">${destination.name}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">${destination.location}</h6>
+                    <p class="card-text">${destination.description}</p>
+                    <p class="card-text"><strong>Rating:</strong> ${destination.rating}</p>
+                  </div>
+                `;
+                getDataContainer.appendChild(destinationCard);
+              });
+            } else {
+              getDataContainer.textContent = "No destinations found.";
+            }
+          })
+          .catch((error) => {
+            getDataContainer.textContent = "Failed to fetch destinations.";
+          });
+      });
+
+      // Add Destination
+      addDestinationBtn.addEventListener("click", () => {
+        const requestData = {
+          name: name.value.trim(),
+          location: location.value.trim(),
+          description: description.value.trim(),
+          rating: parseFloat(rating.value.trim()),
+        };
+
+        // Validate input
+        if (
+          !requestData.name ||
+          !requestData.location ||
+          !requestData.description ||
+          isNaN(requestData.rating)
+        ) {
+          errorMessage.textContent = "Please fill out all fields correctly.";
+          successMessage.textContent = "";
+          return;
+        }
+
+        fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            successMessage.textContent = "Destination added successfully!";
+            errorMessage.textContent = "";
+            document.getElementById("postDataForm").reset(); // Clear the form
+          })
+          .catch((error) => {
+            errorMessage.textContent = "Failed to add destination.";
+            successMessage.textContent = "";
+          });
+      });
+    </script>
+  </body>
+</html>

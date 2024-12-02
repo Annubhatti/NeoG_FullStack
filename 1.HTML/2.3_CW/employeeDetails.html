@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comapny Website</title>
+  </head>
+  <body>
+    <header>
+      <a href="index.html">Company Logo</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="employee.html">Employee</a></li>
+        </ul>
+      </nav>
+      <h1>Employee Details</h1>
+    </header>
+    <main>
+      <section id="employeeDetail">
+        <h2>John Doe</h2>
+        <ul>
+          <li>Name: John Doe</li>
+          <li>Designation: Software Developer</li>
+          <li>Department: IT</li>
+        </ul>
+      </section>
+      <script>
+        //database
+
+        let employees = [
+          {
+            id: "1",
+            name: "John Doe",
+            title: "Software Developer",
+            department: "IT",
+          },
+          {
+            id: "2",
+            name: "Jane Smith",
+            title: "Designer",
+            department: "Design",
+          },
+          {
+            id: "3",
+            name: "Bob Johnson",
+            title: "Project Manager",
+            department: "Management",
+          },
+        ];
+
+        function getParameterByID(id) {
+          // get the id from the URL
+
+          let url = new URL(window.location.href);
+          return url.searchParams.get(id);
+        }
+        let employeeId = getParameterByID("id");
+        //find that id in the database
+        let employee;
+        for (let i = 0; i < employees.length; i++) {
+          if (employees[i].id === employeeId) {
+            employee = employees[i];
+          }
+        }
+        // display the details on the view
+        let employeeDetailElement = document.getElementById('employeeDetail');
+        if(employee){
+            employeeDetailElement.innerHTML = `
+            <h2>${employee.name}</h2>
+            <ul>
+                <li>Name:${employee.name}</li>
+                <li>Designation:${employee.title}</li>
+                <li>Department:${employee.department}</li>
+            </ul>`
+        }else{
+            employeeDetailElement.innerHTML = "Employee not Found";
+        }
+
+      </script>
+    </main>
+    <footer>
+      <p>&copy; Company Name. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!---->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="isFreeCheckbox">
+    <input type="checkbox" id="isFreeCheckbox" />
+      Show only free books
+    </label>
+    <ul id="bookList"></ul>
+
+
+    <script>
+      const books = [
+        { id: 1, title: "Book 1", price: 9.95, isFree: false },
+        { id: 2, title: "Book 2", price: 0.0, isFree: true },
+        { id: 3, title: "Book 3", price: 19.95, isFree: false },
+        { id: 4, title: "Book 4", price: 0.0, isFree: true },
+      ];
+
+      const bookListContainer = document.querySelector("#bookList");
+        const isFreeCheckbox = document.querySelector("#isFreeCheckbox")
+        function renderBooks(filterOnlyFree) { 
+            const filteredBooks = filterOnlyFree ? books.filter(book => book.isFree) : books
+
+            const bookListHTML = filteredBooks.map(
+                (book) => `
+                <li>
+                    <strong>ID:</strong> ${product.id}<br>
+                    <strong>Title:</strong> ${product.title}<br>
+                    <strong>Price:</strong> ${product.price}<br>
+                    </li>
+                    <hr>`)
+                    bookListContainer.innerHTML = bookListHTML.join('')
+                }
+                renderBooks(false)
+
+                isFreeCheckbox.addEventListener("change", function(){
+                    renderBooks(isFreeCheckbox.checked)
+                })
+    </script>
+  </body>
+</html>
