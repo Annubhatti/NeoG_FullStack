@@ -18,7 +18,7 @@
         { id: 4, name: "Tablet", price: 45677 },
       ];
 
-      const productListstringDiv = document.getElementById("#productList");
+      const productListingDiv = document.querySelector("#productList");
 
       const productListHTML = products.map((product) => `
         <div>
@@ -26,8 +26,9 @@
             <strong>Name:</strong> ${product.name}<br>
             <strong>Price:</strong> ${product.price}
             <hr>
-        </div>`);
-        productListstringDiv.innerHTML = productListHTML.join('');
+        </div>
+        `)
+        productListingDiv.innerHTML = productListHTML.join('');
     </script>
   </body>
 </html>

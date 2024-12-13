@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Items List</title>
+  </head>
+  <body>
+    <h1>Items List</h1>
+    <ul id="itemList"></ul>
+    <p><strong>Total Cost: </strong><span id="totalCost">0</span></p>
+    <p><strong>Average Cost: </strong><span id="averageCost">0</span></p>
+
+    <script>
+      const items = [
+        { id: 1, title: "Item 1", cost: "$10" },
+        { id: 2, title: "Item 2", cost: "$20" },
+        { id: 3, title: "Item 3", cost: "$15" },
+        { id: 4, title: "Item 4", cost: "$25" },
+      ];
+
+      const itemListContainer = document.querySelector("#itemList");
+      const totalCostElement = document.querySelector("#totalCost");
+      const averageCostElement = document.querySelector("#averageCost");
+
+      // Process the items array
+      const { totalCost } = items.reduce(
+        (acc, curr) => {
+          // Convert cost to number (strip $)
+          const cost = parseFloat(curr.cost.replace("$", ""));
+
+          // Add to total cost
+          acc.totalCost += cost;
+
+          // Create and append list item
+          const listItem = document.createElement("li");
+          listItem.textContent = `${curr.title} - Cost: ${curr.cost}`;
+          itemListContainer.appendChild(listItem);
+
+          return acc;
+        },
+        { totalCost: 0 } // Initial accumulator object
+      );
+
+      // Calculate average cost
+      const averageCost = totalCost / items.length;
+
+      // Update DOM with total and average cost
+      totalCostElement.textContent = `$${totalCost.toFixed(2)}`;
+      averageCostElement.textContent = `$${averageCost.toFixed(2)}`;
+    </script>
+  </body>
+</html>

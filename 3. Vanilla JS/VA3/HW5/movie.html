@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Database</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navber-light bg-light text-secondary">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">Movie Database</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="movie.html">Movies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="report.html">Report</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container mt-4">
+      <section>
+
+        <h1>List of Movies</h1>
+
+        <div class="row">
+
+          <div class="col">
+            <label for="">Filter by Genre:</label><br />
+          <select name="" id="selectGenre" class="form-select">
+            <option value="all">All Genres</option>
+            <option value="Comedy">Action</option>
+            <option value="Drama">Drama</option>
+          </select>
+          </div>
+
+          <div class="col">
+            <label for="">Filter by Director:</label><br />
+          <select name="" id="selectDirector" class="form-select">
+            <option value="all">All Directors</option>
+            <option value="john">John Doe</option>
+            <option value="jane">Jane Smith</option>
+          </select>
+          </div>
+
+        </div>
+
+      </section>
+      <section class="mt-4">
+
+        <h2>Add a New Movie</h2>
+        <form>
+          <div class="mb-3">
+            <label for="title" class="form-label">Title:</label><br />
+            <input id="title" type="text" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="">Genre:</label><br />
+            <select name="" id="selectMovie" class="form-control">
+              <option value="Action">Action</option>
+              <option value="Drama">Drama</option>
+              <option value="Comedy">Comedy</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="caloriesBurned">Release Date:</label><br />
+            <input
+              id="releaseDate"
+              type="date"
+              class="form-control"
+              placeholder="dd/mm/yyyy"
+              required
+            />
+          </div>
+  
+          <div class="mb-3">
+            <label for="director" class="form-label">Director:</label><br />
+            <input id="director" type="text" class="form-control" required />
+          </div>
+          <button type="button" class="btn btn-primary" id="addMovieBtn">
+            Add Movie
+          </button>
+        </form>
+  
+        <section class="mt-4">
+          <div id="movieList"></div>
+        </section>
+
+      </section>
+
+      <script>
+        const movies = [
+          {
+            id: "1",
+            title: "Movie 1",
+            genre: "Action",
+            releaseDate: "2023-01-15",
+            director: "John Doe",
+          },
+        ];
+        const addMovieBtn = document.querySelector("#addMovieBtn");
+        const movieList = document.querySelector("#movieList");
+
+        function updateMoviesList() {
+          movieList.innerHTML = "";
+
+          for (let i = 0; i < movies.length; i++) {
+            const col = document.createElement('div');
+            col.className = "col-md-6";
+
+            const card = document.createElement('div');
+            card.className = "card mb-3";
+
+            const cardHeader = document.createElement('div');
+            cardHeader.className = 'card-header'
+            
+            const h2 = document.createElement("h2");
+            h2.textContent = movies[i].title;
+
+            cardHeader.appendChild(h2);
+
+            const cardBody = document.createElement("div");
+            cardBody.className = "card-body";
+
+            const genre = document.createElement("p");
+            genre.className = "card-text";
+            genre.innerHTML = `<strong>Genre: </strong>${movies[i].genre}`;
+
+            const releaseDate = document.createElement("p");
+            releaseDate.className = "card-text";
+            releaseDate.innerHTML = `<strong>Release Date: </strong>${movies[i].releaseDate}`;
+
+            const director = document.createElement("p");
+            director.className = "card-text";
+            director.innerHTML = `<strong>Director: </strong>${movies[i].director}`;
+
+            cardBody.appendChild(genre);
+            cardBody.appendChild(releaseDate);
+            cardBody.appendChild(director);
+
+            card.appendChild(cardHeader);
+            card.appendChild(cardBody);
+
+            col.appendChild(card);
+            movieList.appendChild(col);
+          }
+        }
+        
+        addMovieBtn.addEventListener("click", function(){
+          const title = document.querySelector("#title").value
+         const genre = document.querySelector("#selectMovie").value
+         const releaseDate = document.querySelector("#releaseDate").value
+         const director = document.querySelector("#director").value
+
+         if(title && genre && releaseDate && director){
+
+            const newMovieID = movies.length+1
+            const newMovies = {
+              id: newMovieID,
+              title : title,
+               genre : genre,
+               releaseDate : releaseDate,
+               director : director
+            }
+            movies.push(newMovies);
+            updateMoviesList();
+          }
+          });
+          updateMoviesList();
+      </script>
+    </main>
+  </body>
+</html>

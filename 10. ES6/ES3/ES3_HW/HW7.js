@@ -59,3 +59,64 @@ console.log(createPoint(3, 7));
 console.log(createEmail("john.doe", "example.com"));
 // Output: { username: 'john.doe', domain: 'example.com', fullAddress: 'john.doe@example.com' }
  */
+
+const createPerson = (name, age) => {
+    return {name, age}
+}
+console.log(createPerson("Alice", 25)); 
+console.log(createPerson("Bob", 30));
+
+const createFruit = (name ="Apple", color="Red") => {
+    return {name, color}
+}
+console.log(createFruit());
+console.log(createFruit("Banana", "Yellow")); 
+
+const createBookObj = (title, author, genre) => 
+    {return {title,author,genre}}
+console.log(createBookObj("The Great Gatsby", "F. Scott Fitzgerald", "Classic"));
+console.log(createBookObj("The Beatles Anthology", "The Beatles", "Music"));
+
+const createBook = (bookName= "The Hitchhiker's Guide to the Galaxy", author= "Douglas Adams") => {
+    return {bookName, author}
+}
+console.log(createBook());
+console.log(createBook("A Suitable Boy", "Vikram Seth"));
+
+let aaloo = 1;
+let bhaaloo = 2;
+
+const obj = {
+    aaloo: aaloo,
+    bhaaloo: bhaaloo
+}
+
+console.log (obj)
+
+const calculateArea = (length, width, area="40") =>{
+    return {length, width, area}
+}
+console.log(calculateArea(5, 8));
+
+const printObjOfArrays = (arr1, arr2) => {
+    return {arr1, arr2}
+}
+console.log(printObjOfArrays([1, 2, 3], ["a", "b"]));
+
+const createTriangle = (side1, side2, side3, perimeter = 12) => {
+    return {side1, side2, side3, perimeter}
+}
+console.log(createTriangle(3, 4, 5));
+
+const createPoint = (x, y) => {
+    return {x, y}
+}
+console.log(createPoint(3, 7));
+
+
+const createEmail = (username, domain,fullAddress = 'john.doe@example.com') => {
+    return {username, domain,fullAddress}
+}
+console.log(createEmail("john.doe", "example.com"));
+
+

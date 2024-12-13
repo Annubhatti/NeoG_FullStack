@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense List</title>
+
+</head>
+<body>
+    <h1>Expense List</h1>
+
+    <input type="checkbox" id="expenseSelected">
+    <label for="expenseSelected">Expense more than $100</label>
+    <ul id="expenseList"></ul>
+    <p><strong>Total Expenses:</strong><span id="totalExpense">0</span></p>
+    
+    <script>
+        const expensesData = [
+            {id:"1", expense: "Groceries", amount: "$ 150"},
+            {id:"2", expense: "Utilities", amount: "$ 80"},
+            {id:"3", expense: "Dining Out", amount: "$ 120"},
+            {id:"4", expense: "Transportation", amount: "$ 50"},
+        ];
+
+        const totalExpenseContainer = document.querySelector("#totalExpense")
+        const expenseListContainer = document.querySelector("#expenseList")
+        const expenseSelected = document.querySelector("#expenseSelected")
+
+        const selectedExpense = expenseSelected.checked;
+
+        const listItem = document.createElement('li')
+        listItem.innerHTML = expensesData.map((item)=> `<p><strong>Expense: </strong>${item.expense}</p>
+        <p><strong>Amount: </strong>${item.amount}</p>
+        <hr>`  
+    )
+    expenseListContainer.appendChild(listItem); 
+    </script>
+</body>
+</html>

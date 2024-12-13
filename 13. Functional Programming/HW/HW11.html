@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List</title>
+  </head>
+  <body>
+    <label for="checkStatus"> Filter by Status:
+      <select id="checkStatus">
+        <option value="all">All</option>
+        <option value="todo">To-Do</option>
+        <option value="inprogress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+    </label>
+    <ul id="taskList"></ul>
+
+    <script>
+      const tasks = [
+        { id: 1, title: "Task 1", status: "todo" },
+        { id: 2, title: "Task 2", status: "inprogress" },
+        { id: 3, title: "Task 3", status: "completed" },
+        { id: 4, title: "Task 4", status: "todo" },
+      ];
+
+      const taskListContainer = document.querySelector("#taskList");
+      const checkStatus = document.querySelector("#checkStatus");
+
+      function showFilteredData() {
+        // Get the selected status
+        const selectedStatus = checkStatus.value;
+
+        // Filter tasks based on the selected status
+        const filteredTask =
+          selectedStatus === "all"
+            ? tasks
+            : tasks.filter((task) => task.status === selectedStatus);
+
+        // Generate HTML for the filtered tasks
+        const taskListHTML = filteredTask
+          .map(
+            (task) => `
+          <li>
+            <strong>ID:</strong> ${task.id}<br>
+            <strong>Title:</strong> ${task.title}<br>
+            <strong>Status:</strong> ${task.status}<br>
+          </li>
+          <hr>`
+          )
+          .join("");
+
+        // Update the task list container with the generated HTML
+        taskListContainer.innerHTML = taskListHTML;
+      }
+
+      // Initial rendering
+      showFilteredData();
+
+      // Attach event listener to update task list on filter change
+      checkStatus.addEventListener("change", showFilteredData);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee List</title>
+  </head>
+  <body>
+    <input type="checkbox" id="empChecked">
+    <label for="empChecked">Show employees with more than 5 years of job experience</label>
+    <ul id="employeeList"></ul>
+
+    <script>
+      const employees = [
+        { id: 1, name: "Alice", experience: "2 years" },
+        { id: 2, name: "Bob", experience: "9 years" },
+        { id: 3, name: "Charlie", experience: "4 years" },
+        { id: 4, name: "David", experience: "19 years" },
+      ];
+
+      const empChecked = document.querySelector("#empChecked");
+      const employeeListDiv = document.querySelector("#employeeList");
+
+      function showFilteredData() {
+        // Get checkbox state
+        const isChecked = empChecked.checked;
+
+        // Filter employees based on experience
+        const filteredEmployees = isChecked
+          ? employees.filter(
+              (employee) => parseInt(employee.experience) > 5
+            )
+          : employees;
+
+        // Generate employee list HTML
+        const employeeListHTML = filteredEmployees
+          .map(
+            (employee) => `
+            <li>
+              <strong>ID:</strong> ${employee.id}<br>
+              <strong>Name:</strong> ${employee.name}<br>
+              <strong>Experience:</strong> ${employee.experience}<br>
+            </li>
+            <hr>
+          `
+          )
+          .join("");
+
+        // Update the employee list in the DOM
+        employeeListDiv.innerHTML = employeeListHTML;
+      }
+
+      // Initial rendering of the employee list
+      showFilteredData();
+
+      // Add event listener to checkbox for real-time filtering
+      empChecked.addEventListener("change", showFilteredData);
+    </script>
+  </body>
+</html>

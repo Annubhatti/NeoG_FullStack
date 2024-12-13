@@ -1,0 +1,34 @@
+<!--- display data on Dom by looping over array of objects ---->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie List</title>
+  </head>
+  <body>
+    <h1>Movie List</h1>
+    <div id="movieList"></div>
+
+    <script>
+      const movies = [
+        { id: 1, title: "The Shawshank Redemption", genre: "Drama", year: 1994},
+        { id: 2, title: "The Godfather", genre: "Crime", year: 1972 },
+        { id: 3, title: "The Dark Knight", genre: "Action", year: 2008 },
+        { id: 4, title: "Pulp Fiction", genre: "Crime", year: 1994 },
+      ];
+      
+      const movieListingDiv = document.querySelector("#movieList");
+
+      const movieListHTML = movies.map((movie) => `
+        <div>
+            <strong>ID:</strong> ${movie.id}<br>
+            <strong>Title:</strong> ${movie.title}<br>
+            <strong>Genre:</strong> ${movie.genre}<br>
+            <strong>Year:</strong> ${movie.year}
+            <hr>
+        </div>`);
+        movieListingDiv.innerHTML = movieListHTML.join('')
+    </script>
+  </body>
+</html>

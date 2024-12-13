@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyHealth</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">MyHealth</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="calorie.html">Calories</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+           <h1>Calorie Details</h1>
+        </section>
+
+        <section id="calorieDetails">
+            
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 MyHealth App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        //database
+
+        let foodData = [
+        {
+            id: "1",
+            meal: "Breakfast",
+            item: "Dosa",
+            calories: "200",
+          },
+          {
+            id: "2",
+            meal: "Lunch",
+            item: "Rice",
+            calories: "300",
+          },
+          {
+            id: "3",
+            meal: "Dinner",
+            item: "Chapati",
+            calories: "400",
+          },
+    ];
+
+    function getParameterByID(id) {
+          // get the id from the URL
+
+          let url = new URL(window.location.href);
+          return url.searchParams.get(id);
+        }
+        let foodId = getParameterByID("id");
+        //find that id in the database
+        let food;
+        for (let i = 0; i < foodData.length; i++) {
+          if (foodData[i].id === foodId) {
+            food = foodData[i];
+          }
+        }
+        // display the details on the view
+        let foodDetailElement = document.getElementById('calorieDetails');
+        if(food){
+            foodDetailElement.innerHTML = `
+            <h2>${food.meal}</h2>
+            <ul>
+                <li>Meal:${food.meal}</li>
+                <li>Item:${food.title}</li>
+                <li>Calories:${food.calories}</li>
+            </ul>`
+        }else{
+            foodDetailElement.innerHTML = "food Data not Found";
+        }
+
+
+    </script>
+</body>
+</html>

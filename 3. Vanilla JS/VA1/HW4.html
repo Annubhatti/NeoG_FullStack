@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="enterReview">Enter your book review:</label>
+    <textarea id="enterReview" rows="2" cols="10"></textarea>
+    <button id="displayBookBtn">Display Book Review</button>
+    <p id="displayBookResult"></p>
+
+    <label for="bioTextarea">Enter your personal bio:</label>
+    <textarea id="bioTextarea"></textarea>
+    <button id="bioDisplayBtn">Display Styled Bio</button>
+    <p id="bioResult"></p>
+
+    <label for="diaryTextarea">Enter your personal diary entry:</label>
+    <textarea id="diaryTextarea"></textarea>
+    <button id="diaryDisplayBtn">Display Diary Entry</button>
+    <p id="diaryResult"></p>
+
+    <script>
+        const enterReview = document.getElementById("enterReview")
+        const displayBookBtn = document.getElementById("displayBookBtn")
+        const displayBookResult = document.getElementById("displayBookResult")
+
+        displayBookBtn.addEventListener("click", function(){
+            const book = enterReview.value
+            displayBookResult.textContent = `Your book review: ${book}`
+        })
+
+        const bioTextarea = document.getElementById("bioTextarea")
+        const bioDisplayBtn = document.getElementById("bioDisplayBtn")
+        const bioResult = document.getElementById("bioResult")
+
+        bioDisplayBtn.addEventListener("click", function(){
+            const bio = bioTextarea.value
+            bioResult.textContent = `${bio}`
+        })
+
+        const diaryTextarea = document.getElementById("diaryTextarea")
+        const diaryDisplayBtn = document.getElementById("diaryDisplayBtn")
+        const diaryResult = document.getElementById("diaryResult")
+
+        diaryDisplayBtn.addEventListener("click", function(){
+            const diary = diaryTextarea.value
+            const currentDateTime = new Date().toLocaleString();
+            diaryResult.innerHTML = `<p>
+                <strong>${currentDateTime}</strong></p><p>${diary}</p>`
+        })
+
+    </script>
+
+</body>
+</html>

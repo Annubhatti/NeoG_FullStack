@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <label for="ageInput">Enter your age:</label>
+    <input type="text" id="ageInput" />
+    <button id="validateAgeBtn">Validate Age</button>
+    <p id="showValidateAgeResult"></p>
+
+    <label for="animalInput">Enter your favorite animal:</label>
+    <input type="text" id="animalInput" />
+    <button id="displayAnimalBtn">Display Animal</button>
+    <p id="displayAnimalResult"></p>
+
+    <label for="colorInput">Enter your favorite color:</label>
+    <input type="text" id="colorInput" />
+    <button id="displayColorBtn">Display Color</button>
+    <p id="displayColorResult"></p>
+
+    <label for="displayMsgInput">Yes/No Question:</label>
+    <input type="text" id="displayMsgInput" />
+    <button id="displayMsgBtn">Display Message</button>
+    <p id="displayMsgResult"></p>
+
+    <label for="numberInput">Enter a number:</label>
+    <input type="text" id="numberInput" />
+    <button id="checkNumberBtn">Check Number</button>
+    <p id="checkNumberResult"></p>
+
+    <script>
+      const ageInput = document.getElementById("ageInput");
+      const ValidateAgeBtn = document.getElementById("validateAgeBtn");
+      const ShowValidateAgeResult = document.getElementById(
+        "showValidateAgeResult"
+      );
+
+      ValidateAgeBtn.addEventListener("click", function () {
+        const userAge = ageInput.value;
+
+        if (userAge > 18 && userAge <= 100) {
+          ShowValidateAgeResult.textContent = "Valid Age.";
+        } else {
+          ShowValidateAgeResult.textContent =
+            "Invalid age. Please enter an age between 18 and 100.";
+        }
+      });
+
+      const animalInput = document.getElementById("animalInput");
+      const DisplayAnimalBtn = document.getElementById("displayAnimalBtn");
+      const DisplayAnimalResult = document.getElementById("displayAnimalResult");
+      
+      DisplayAnimalBtn.addEventListener("click", function () {
+        const userAnimal = animalInput.value
+        DisplayAnimalResult.textContent = `Your favorite animal: ${userAnimal}`
+      });
+
+      const ColorInput = document.getElementById("colorInput");
+      const DisplayColorBtn = document.getElementById("displayColorBtn");
+      const DisplayColorResult = document.getElementById("displayColorResult");
+
+      DisplayColorBtn.addEventListener("click", function () {
+        const userColor = ColorInput.value
+        DisplayColorResult.textContent = `Your favorite Color: ${userColor}`
+      });
+
+      const displayMsgInput = document.getElementById("displayMsgInput");
+      const DisplayMsgBtn = document.getElementById("displayMsgBtn");
+      const DisplayMsgResult = document.getElementById("displayMsgResult");
+
+      DisplayMsgBtn.addEventListener("click", function () {
+        const userMsg =  displayMsgInput.value
+        if (userMsg === "Yes" || userMsg === "No") {
+          DisplayMsgResult.textContent =`You said ${userMsg}`
+        }else{
+          DisplayMsgResult.textContent ="Invalid Response. Please enter 'Yes' or 'No'"
+        }
+      });
+
+      const numberInput = document.getElementById("numberInput");
+      const CheckNumberBtn = document.getElementById("checkNumberBtn");
+      const CheckNumberResult = document.getElementById("checkNumberResult");
+
+      CheckNumberBtn.addEventListener("click", function () {
+        const userNumber = numberInput.value;
+
+        if (userNumber % 2 === 0) {
+            CheckNumberResult.textContent = `${userNumber} is Even`
+        } else {
+            CheckNumberResult.textContent = `${userNumber} is Odd`
+        }
+      });
+
+    </script>
+  </body>
+</html>

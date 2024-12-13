@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Players Database</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Players Database</a>
+            <ul>
+                <li><a href="index.html"> Home</a></li>
+                <li><a href="players.html">Players</a></li>
+                <li><a href="report.html"> Report</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>Player Details</h1>
+        
+        </section>
+
+        <section id="playersDetails">
+           
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; 2023 Company Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+
+        //Database
+        const playersData = [
+            {id: "1", name:"Player 1", country :"India", role:"Batsman"},
+            {id: "1", name:"Player 2", country :"India", role:"Batsman"}
+        ];
+
+        function getParameterByID(id) {
+          // get the id from the URL
+
+          let url = new URL(window.location.href);
+          return url.searchParams.get(id);
+        }
+
+        let playerId = getParameterByID("id")
+        //find that id in the database
+        let player;
+        for (let i = 0; i < playersData.length; i++) {
+          if (playersData[i].id === playerId) {
+            player = playersData[i];
+          }
+        }
+
+        // display the details on the view
+        let playerDetailElement = document.getElementById('playersDetails');
+        if(player){
+            playerDetailElement.innerHTML = `
+            <h2>${player.name}</h2>
+            
+                <p><strong>Country: </strong>${player.country}</p>
+                <p><strong>Role: </strong>${player.role}</p>
+            `
+        }else{
+            playerDetailElement.innerHTML = "Players Data not Found";
+        }
+
+    </script>
+</body>
+</html>

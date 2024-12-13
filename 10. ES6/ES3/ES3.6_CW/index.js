@@ -7,9 +7,9 @@ let age = 20
     personName: personName,
     age: age
 }
-
-const obj1 = {personName,age} */
-
+*/
+//const obj1 = {personName,age}  -----> Eample of object reation using shorthand
+// function to create this object
 const createPerson = (personName, age) => {
     return {personName, age}
 }

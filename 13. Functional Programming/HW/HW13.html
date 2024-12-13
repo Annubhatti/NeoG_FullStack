@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List</title>
+  </head>
+  <body>
+      <label for="all"><input type="radio" name="status" value="all">all</label>
+      <label for="todo"><input type="radio" name="status" value="todo">todo</label>
+      <label for="inProgress"><input type="radio" name="status" value="inProgress">inProgress</label>
+      <label for="completed"><input type="radio" name="status" value="completed">completed</label>
+       
+    <ul id="taskList"></ul>
+
+    <script>
+      const tasks = [
+        { id: 1, title: "Task 1", status: "all" },
+        { id: 2, title: "Task 2", status: "todo" },
+        { id: 3, title: "Task 3", status: "inProgress" },
+        { id: 4, title: "Task 4", status: "completed" },
+      ];
+
+      const taskListContainer = document.querySelector("#taskList");
+      const filterRadioButtons = document.getElementsByName("status");
+
+      function showFilteredData(selectedStatus) {
+        
+        // Filter tasks based on the selected status
+        const filteredTask =
+          selectedStatus === "all"
+            ? tasks
+            : tasks.filter((task) => task.status === selectedStatus);
+
+        // Generate HTML for the filtered tasks
+        const taskListHTML = filteredTask
+          .map(
+            (task) => `
+          <li>
+            <strong>ID:</strong> ${task.id}<br>
+            <strong>Title:</strong> ${task.title}<br>
+            <strong>Status:</strong> ${task.status}<br>
+          </li>
+          <hr>`
+          )
+          .join("");
+
+        // Update the task list container with the generated HTML
+        taskListContainer.innerHTML = taskListHTML;
+      }
+
+      // Initial rendering
+      showFilteredData('all');
+
+      // Attach event listener to update task list on filter change
+      filterRadioButtons.forEach(radioBtn => {
+        radioBtn.addEventListener("change", function(){
+            showFilteredData(this.value)
+        })
+      });
+    </script>
+  </body>
+</html>

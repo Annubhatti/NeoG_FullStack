@@ -9,7 +9,7 @@ for(let i=0;i<numbers.length;i++){
     sum+=numbers[i]
 }
 console.log(sum)
-
+                                                                                           // |--> inital  value
 const sumOfNumbers = numbers.reduce((accumulator, currentValue) => accumulator + currentValue,0)
 console.log(sumOfNumbers)
 

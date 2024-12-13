@@ -1,0 +1,33 @@
+<!--- display data on Dom by looping over array of objects ---->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee List</title>
+  </head>
+  <body>
+    <h1>Employee List</h1>
+    <div id="employeeList"></div>
+
+    <script>
+      const employees = [
+        { id: 1, name: "Alice", position: "Developer" },
+        { id: 2, name: "Bob", position: "Designer" },
+        { id: 3, name: "Charlie", position: "Manager" },
+        { id: 4, name: "David", position: "Tester" },
+      ];
+
+      const employeeListingDiv = document.querySelector("#employeeList");
+
+      const employeeListHTML = employees.map((employee) => `
+        <div>
+            <strong>ID:</strong> ${employee.id}<br>
+            <strong>Name:</strong> ${employee.name}<br>
+            <strong>Position:</strong> ${employee.position}
+            <hr>
+        </div>`);
+        employeeListingDiv.innerHTML = employeeListHTML.join('')
+    </script>
+  </body>
+</html>
