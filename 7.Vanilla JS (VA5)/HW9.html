@@ -53,24 +53,41 @@
             return response.json();
           })
           .then(function (data) {
-            if (data) {
+            if (data && data.length > 0) {
               for (let i = 0; i < data.length; i++) {
-                const resultText = document.createElement("div");
-                resultText.className = "card mb-3 p-3"; // Added spacing
-                getDataContainer.appendChild(resultText);
-                resultText.innerHTML = `
-                  <h3>POST ID: ${data[i]._id}</h3> <!-- Corrected to data[i].id -->
-                  <p><strong>Name:</strong> ${data[i].name}</p>
-                  <p><strong>Message:</strong> ${data[i].message}</p>
-                `;
+                const cardDiv = document.createElement("div");
+                cardDiv.className = "card mt-2"; // Add the 'card' class
+                // cardDiv.style.width = "55rem"; // Optional: Set width
+
+                // Create card body
+                const cardBody = document.createElement("div");
+                cardBody.className = "card-body";
+
+                // Add content to the card body
+                const cardTitle = document.createElement("h5");
+                cardTitle.className = "card-title";
+                cardTitle.textContent = `Post ID: ${data[i]._id}`;
+
+                const cardText = document.createElement("p");
+                cardText.className = "card-text";
+                cardText.textContent = JSON.stringify(data[i]);
+
+                // Append content to the card body
+                cardBody.appendChild(cardTitle);
+                cardBody.appendChild(cardText);
+
+                // Append the card body to the card
+                cardDiv.appendChild(cardBody);
+
+                // Append the card to the container
+                getDataContainer.appendChild(cardDiv);
               }
             } else {
-              getDataContainer.textContent = "No data available.";
+              getDataContainer.textContent = "No data found";
             }
           })
           .catch(function (error) {
-            getDataContainer.textContent =
-              "An error occurred while fetching data.";
+            getDataContainer.textContent = "An error occurred while fetching data";
           });
       });
 

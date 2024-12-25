@@ -113,7 +113,7 @@ const SquareArea = () => {
 
 const CapitalizeString = () => {
     const str = "hello world";
-    const capitalizedStr = str.charAt(0).toUpperCase() + str.slice(1);
+    const capitalizedStr = str.toUpperCase();
     return (
         <div>
             <p>Original String: {str}</p>
