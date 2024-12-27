@@ -5,13 +5,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import About from './pages/About'
-import Stays from './pages/Stays'
+import Blogs from './pages/Blogs';
 import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Optional Bootstrap JS
 
 // we just defined the routes 
 const router = createBrowserRouter([
-  //it takes array of objects
   {
     path: "/",
     element: <App />
@@ -21,8 +20,8 @@ const router = createBrowserRouter([
     element: <About />
   },
   {
-    path: "/stays",
-    element: <Stays />
+    path: "/blogs",
+    element: <Blogs />
   }
 
 ])
