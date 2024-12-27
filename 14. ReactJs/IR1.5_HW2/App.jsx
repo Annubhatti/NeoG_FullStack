@@ -2,15 +2,25 @@
 
 //2. Create a React component called AbsoluteValue, which shows the absolute value of a given number. 
 
-const number = -10
+//const number = -10
 
 //3. Create a React component called SumOfEvenNumbers, to calculate the sum of all even numbers present in an array. 
 
-const numbers = [1, 2, 3, 4, 5, 6, 7]
+//const numbers = [1, 2, 3, 4, 5, 6, 7]
 
 //4. Create a React component, to find the perimeter of a square. The sides of square is 5 cm in length.
 
 //5. Create a React component named CurrencyConverter to convert an amount from US Dollars (USD) to Indian Rupee (INR). The amount is $50. Assuming an exchange rate of 1 USD = 74.5.
+
+//Expected Output:
+// Random Number: 90
+// Absolute Value: 10
+// Sum of even numbers: 12
+// Square Parameter Calculator
+// Side Length: 5cm
+// Perimeter: 20cm
+
+// Currency Converter
 
 import React from 'react';
 import './App.css';

@@ -50,8 +50,22 @@ const CalculatePerimeter = () => {
 } 
 
 const GenerateMessage = () => {
-    const 
-}
+    const getHoures = (hour) => {
+      if (hour < 12) {
+        return "Good Morning!";
+      } else if (hour < 18) {
+        return "Good Afternoon!";
+      } else {
+        return "Good Evening!";
+      }
+    };
+    const hour = new Date().getHours();
+    return (
+      <>
+        <h1>{getHoures(hour)}</h1>
+      </>
+    );
+  };
 
 const CalculateVolume =  () => {
     const volCylinder = (radius, height) => {
@@ -60,7 +74,7 @@ const CalculateVolume =  () => {
     const radius = 3
     const height = 5;
 
-    return `Volume of Cylinder: ${volCylinder(radius,height)}`
+     return <p>Volume of cylinder: {volCylinder(radius, height)}</p>
 }
 
 
@@ -68,10 +82,10 @@ export default function App() {
     return (
         <main>
             <div>
-            
                <GenerateGreeting name = "John" />
                <CalculateArea />
                <CalculatePerimeter />
+               <GenerateMessage />
                <CalculateVolume />
             </div>
         </main>
