@@ -1,28 +1,32 @@
-function About() {
-  return (
-    <main className="container py-4">
-      <h1>About Airbnb</h1>
-      <p>
-        Airbnb was born in 2007 when two hosts welcomed three guests to their
-        San Francisco home, and has since grown to over 5 million hosts who have
-        welcomed over 2 billion guest arrivals in almost every country across
-        the globe.
-      </p>
-      <p>
-        Every day, hosts offer unique stays and experiences that make it
-        possible for guests to connect with communities in a more authentic way.
-      </p>
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-      <p>
-        Airbnb was born in 2007 when two hosts welcomed three guests to their
-        San Francisco home, and has since grown to over 5 million hosts who have
-        welcomed over 2 billion guest arrivals in almost every country across
-        the globe. Every day, hosts offer unique stays and experiences that make
-        it possible for guests to connect with communities in a more authentic
-        way.
-      </p>
-    </main>
-  );
+function About(){
+    return(
+      <>
+      <Header />
+        <main className="container py-4">
+            <h1>About Us</h1>
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            The standard chunk of Lorem Ipsum used since the 1500s is reproduced
+            below for those interested. Sections 1.10.32 and 1.10.33 from "de
+            Finibus Bonorum et Malorum" by Cicero are also reproduced in their
+            exact original form, accompanied by English versions from the 1914
+            translation by H. Rackham.
+          </p>
+        </main>
+        <Footer />
+        </>
+    )
 }
 
 export default About;

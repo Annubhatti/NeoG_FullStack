@@ -1,38 +1,44 @@
-
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css"
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 
 export default function App() {
   return (
+    <>
+    <Header />
     <main className="container py-4">
       
-        <h1>Latest Listings</h1>
+        <h1>Latest Blogs</h1>
         <article>
-          <img src="https://th.bing.com/th/id/R.55e84791a8b4580ae5be72d70be7c469?rik=QbvUxc4BN2kwog&riu=http%3a%2f%2ft.realgeeks.media%2fthumbnail%2fZuI8emYsxqm3cDCA_NEtha9wD1A%3d%2ffit-in%2f1100x0%2fu.realgeeks.media%2fcent21barbpatterson%2f_rgg%2flandscape_images%2fCottage.jpg&ehk=N1k%2fNhtZMrzm3Wv%2fFuKq6ay4b%2bz13cet4sO1YahWSH0%3d&risl=&pid=ImgRaw&r=0" alt="home 1" className="img-fluid rounded" />
-          <h5 className="mt-3">Cozy Loft in the City Center</h5>
-
+          <h2>Blog 1</h2>
+          <img src="https://via.placeholder.com/500x200" alt="blog 1" className="img-fluid rounded" />
+          <p>Posted on February 22, 2024 by John Doe</p>
           <p>
-            Entire loft . 2 guests . 1 bedroom . 1 bed . 1 bath
-          </p>
-          <p>Enjoy your stay in this stylish loft apartment loacated in the heart of the city. Close to restaurants, shops, and attractions, it's the perfect base for exploring the city.</p>
-          <p>
-            $120 per night
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
           </p>
         </article>
         <article>
-        <img src="https://th.bing.com/th/id/OIP.wCOIZZ2QjtvMW5dgNxy1CgHaD2?rs=1&pid=ImgDetMain" alt="home 2" className="img-fluid rounded" />
-          <h5 className="mt-3">Beachfront Villa with Stunning Views</h5>
-
+          <h2>Blog 2</h2>
+          <img src="https://via.placeholder.com/500x200" alt="blog 2" className="img-fluid rounded" />
+          <p>Posted on February 18, 2024 by Jane Smith</p>
           <p>
-            IEntire villa . 6 guests . 3 bedroom . 3 bed . 2 bath
-          </p>
-          <p>Relax and unwind your stay in this stylish loft apartment loacated in the heart of the city. Close to restaurants, shops, and attractions, it's the perfect base for exploring the city.</p>
-          <p>
-            $300 per night
+            The standard chunk of Lorem Ipsum used since the 1500s is reproduced
+            below for those interested. Sections 1.10.32 and 1.10.33 from "de
+            Finibus Bonorum et Malorum" by Cicero are also reproduced in their
+            exact original form, accompanied by English versions from the 1914
+            translation by H. Rackham.
           </p>
         </article>
       
     </main>
+    <Footer />
+    </>
   );
 }

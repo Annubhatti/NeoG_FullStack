@@ -1,6 +1,6 @@
 export default function Blogs() {
   return (
-    <main className="conatiner py-4">
+    <main className="container py-4">
       <h1>Blogs</h1>
       <div>
         <div className="row">

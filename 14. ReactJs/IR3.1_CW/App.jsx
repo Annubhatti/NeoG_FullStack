@@ -1,9 +1,3 @@
-// we having multiple pages  now
-// how to add routing in a react application
-// routing means nevigation through  pages
-// react router is a library that help routing in react app for router npm install react-router-dom
-// npm install bootstrap
-
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -34,8 +28,8 @@ export default function App() {
           <p>Posted on February 18, 2024 by Jane Smith</p>
           <p>
             The standard chunk of Lorem Ipsum used since the 1500s is reproduced
-            below for those interested. Sections 1.10.32 and 1.10.33 from "de
-            Finibus Bonorum et Malorum" by Cicero are also reproduced in their
+            below for those interested. Sections 1.10.32 and 1.10.33 from `de
+            Finibus Bonorum et Malorum` by Cicero are also reproduced in their
             exact original form, accompanied by English versions from the 1914
             translation by H. Rackham.
           </p>
