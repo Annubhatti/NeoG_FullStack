@@ -1,64 +1,109 @@
 import "./App.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 
-export default function App() {
-  const posts = [
-    {
-      id: "1",
-      username: "john_doe",
-      imgUrl: "https://placehold.co/400x200?text=Hello+World",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: "2",
-      username: "jane_smith",
-      imgUrl: "https://placehold.co/400x200?text=Smiling+Jane",
-      content:
-        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      id: "3",
-      username: "alice_wonder",
-      imgUrl: "https://placehold.co/400x200?text=Alice+In+Wonder+Park",
-      content:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-  ];
+const SubscriptionForm = () => {
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [plan, setPlan] = useState("");
+  const [interests, setInterests] = useState([]);
+  const [update, setUpdates] = useState("");
+  const [comments, setComments] = useState("");
+
+  const [formData, setFormData] = useState(false);
+
+  
+  const interestsHandler = (event) => {
+    let value = event.target.value;
+    if(event.target.value){
+      setInterests([...interests, value])
+    }else{
+      setInterests(interests.filter(interest => interest != value))
+    }
+  };
+
+  const planSelectHandler = (event) => {
+    setPlan(event.target.value);
+  };
+
+  const formHandler = (event) =>{
+    event.preventDefault();
+      if(name && email && plan && interests && update && comments){
+        setFormData(true)
+      }
+
+  };
 
   return (
-    <>
-      <Header />
-      <main className="container py-4">
-        <h1>Posts</h1>
+    <div>
+      <main>
+        <h1>Subscription Form</h1>
+        <br />
+        <form onSubmit={formHandler}>
+        <label htmlFor="fullName">Full Name: </label>
+        <input id="fullName" onChange={(event) => setName(event.target.value)} />
+        <br /> <br />
 
-        <div className="list-group">
-          {posts.map((post) => (
-            <div
-              key={post.id}
-              className="list-group-item list-group-item-action"
-              aria-current="true"
-            >
-              <div className="d-flex w-100 justify-content-between align-items-start">
-                <div>
-                  <h5 className="mb-1">
-                    <Link to={`/profile/${post.username}`}>{post.username}</Link>
-                  </h5>
-                  <img
-                    src={post.imgUrl}
-                    alt={`${post.username}'s post`}
-                    className="img-fluid rounded mt-2"
-                  />
-                  <p className="mt-2">{post.content}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <label htmlFor="userEmail">Email: </label>
+        <input id="userEmail" onChange={(event) => setEmail(event.target.value)} />
+        <br /> <br />
+        <label htmlFor="planSelect">Favourite color: </label>
+        <select id="planSelect" onChange={planSelectHandler}>
+          <option value="Select Plan">Select Plan</option>
+          <option value="Basic">Basic</option>
+          <option value="Premium">Premium</option>
+          <option value="Ultimate">Ultimate</option>
+        </select>
+        <br /> <br />
+
+        <label htmlFor="">Interests:</label>
+        <br />
+        <input type="checkbox" value="Technology" onChange={interestsHandler} />Technology
+        <br />
+        <input type="checkbox" value="Fitness" onChange={interestsHandler} />Fitness
+        <br />
+        <input type="checkbox" value="Cooking" onChange={interestsHandler} />Cooking
+        <br />
+        <br />
+
+        <label>Want to Receive Updates: </label>
+        <br />
+        <input type="radio" value="Yes" name="updates" onChange={(event) => setUpdates(event.target.value)} />
+        Yes
+        <br />
+        <input type="radio" value="No" name="updates" onChange={(event) => setUpdates(event.target.value)} />
+        No
+        <br />
+        <br />
+        <label htmlFor="comments">Comments: </label>
+        <br /> 
+        <textarea id="comments" rows="4" cols="40" onChange={(event) => setComments(event.target.value)}></textarea>
+        <br /> <br />
+        <button type="Submit">Submit</button>
+      </form>
+
+      {formData && <div>
+        <h2>Submitted Details: </h2>
+        <p>Full Name: {name}</p>
+        <p>Email: {email}</p>
+        <p>Subscription Plan: {plan}</p>
+        <p>Interests: {interests.join(", ")}</p>
+        <p>Want to Receive Updates: {update}</p>
+        <p>Comments: {comments}</p>
+      </div>}
       </main>
-      <Footer />
-    </>
+    </div>
+  );
+};
+
+
+export default function App() {
+  return (
+    <div>
+      <main>
+        <br />
+        <SubscriptionForm />
+      </main>
+    </div>
   );
 }
