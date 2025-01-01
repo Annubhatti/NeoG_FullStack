@@ -1,43 +1,85 @@
+import { useLoaderData } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useParams } from "react-router-dom";
 
-export default function ProductDetails() {
-  const postId = useParams();
 
-  const posts = [
-    {
-      id: "1",
-      username: "john_doe",
-      imgUrl: "https://placehold.co/400x200?text=Hello+World",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+export async function loader({ params }) {
+  const userData = {
+    john_doe: {
+      fullName: "John Doe",
+      bio: "Software Developer | Tech Enthusiast",
+      imageUrl: "https://via.placeholder.com/250",
+      followers: 1000,
+      following: 500,
+      posts: 50,
     },
-    {
-      id: "2",
-      username: "jane_smith",
-      imgUrl: "https://placehold.co/400x200?text=Smiling+Jane",
-      content:
-        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    jane_smith: {
+      fullName: "Jane Smith",
+      bio: "Graphic Designer | Nature Lover",
+      imageUrl: "https://via.placeholder.com/250",
+      followers: 800,
+      following: 300,
+      posts: 40,
     },
-    {
-      id: "3",
-      username: "alice_wonder",
-      imgUrl: "https://placehold.co/400x200?text=Alice+In+Wonder+Park",
-      content:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    alice_wonder: {
+      fullName: "Alice Wonder",
+      bio: "Travel Blogger | Foodie",
+      imageUrl: "https://via.placeholder.com/150",
+      followers: 1200,
+      following: 600,
+      posts: 60,
     },
-  ];
+  };
 
-  const postData = posts.find((post) => post.id === postId.profileId);
+  if (userData[params.profilename]) {
+    return userData[params.profilename];
+  }
+
+  // Return null if the profile is not found
+  return null;
+}
+
+export default function ProfileDetails() {
+  const selectedData = useLoaderData();
+
+  if (!selectedData) {
+    return (
+      <>
+        <Header />
+        <main className="container pt-3">
+          <h1>User not found</h1>
+        </main>
+      </>
+    );
+  }
 
   return (
-    <div>
-        <Header />
-      <main className="container py-4">
-        <h1>{postData.username}</h1>
-        <p className="pt-3">{postData.content}</p>
+    <>
+      <Header />
+      <main className="container pt-3">
+        <div className="row align-items-start">
+          <div className="col-md-4">
+            {/* Profile Image */}
+            <div className="col-auto">
+              <img
+                src={selectedData.imageUrl}
+                className="img-fluid"
+                alt={`Profile of ${selectedData.fullName}`}
+              />
+            </div>
+          </div>
+          {/* Profile Details */}
+          <div className="col-md-8">
+            <h5 className="fw-bold">{selectedData.fullName}</h5>
+            <p className="text-muted">{`@${(selectedData.fullName).replace(" ","_")}`}</p>
+            <p>{selectedData.bio}</p>
+            <p>Followers: {selectedData.followers}</p>
+            <p>Following: {selectedData.following}</p>
+            <p>Posts: {selectedData.posts}</p>
+          </div>
+        </div>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

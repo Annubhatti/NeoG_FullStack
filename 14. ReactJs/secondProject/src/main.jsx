@@ -4,9 +4,10 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Optional Bootstrap JS
 import "./index.css";
 import App from "./App.jsx";
-import Profiles from "./pages/Profiles.jsx";
-import ProductDetails from "./pages/ProfileDetail.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Todo from "./pages/todo.jsx";
+import About from './pages/about.jsx'
+import TodoDetails, { loader } from "./pages/todoDetails.jsx";
 
 const router = createBrowserRouter([
   // it takes array of route
@@ -15,12 +16,17 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path: "/profile",
-    element: <Profiles />
+    path: "/todo",
+    element: <Todo />
   },
   {
-    path: "/profile/:profileId",
-    element: <ProductDetails />
+    path: "/about",
+    element: <About />
+  },
+  {
+    path: "/todo/:todoId",
+   element: <TodoDetails />,
+   loader: loader,
   }
 ]);
 

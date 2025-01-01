@@ -1,42 +1,35 @@
-import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 
+export default function Profiles() {
+  return (
+    <>
+      <Header />
+      <main className="container pt-4">
+        <div className="row align-items-start">
+            <div className="col-md-4">
 
-export default function Profiles(){
-
-    const userData = {
-        john_doe: {
-          fullName: "John Doe",
-          bio: "Software Developer | Tech Enthusiast",
-          imageUrl: "https://via.placeholder.com/250",
-          followers: 1000,
-          following: 500,
-          posts: 50,
-        },
-        jane_smith: {
-          fullName: "Jane Smith",
-          bio: "Graphic Designer | Nature Lover",
-          imageUrl: "https://via.placeholder.com/250",
-          followers: 800,
-          following: 300,
-          posts: 40,
-        },
-        alice_wonder: {
-          fullName: "Alice Wonder",
-          bio: "Travel Blogger | Foodie",
-          imageUrl: "https://via.placeholder.com/150",
-          followers: 1200,
-          following: 600,
-          posts: 60,
-        },
-      };
-
-
-    return(
-        <div>
-            <Header />
-            <h1>Profiles of Employees</h1>
-            <Footer />
+          {/* Profile Image */}
+          <div className="col-auto">
+            <img
+              src="https://via.placeholder.com/150"
+              className="img-fluid rounded-circle"
+              alt="Profile"
+              />
+          </div>
+              </div>
+          {/* Profile Details */}
+            <div className="col-md-8">
+                <h5 className="fw-bold">John Doe</h5>
+                <p className="text-muted">@john_doe</p>
+                <p>Software Developer | Tech Enthusiast</p>
+                <p>Followers: 1000</p>
+                <p>Following: 500</p>
+                <p>Posts: 50</p>
+            </div>
         </div>
-    )
+      </main>
+      <Footer />
+    </>
+  );
 }
