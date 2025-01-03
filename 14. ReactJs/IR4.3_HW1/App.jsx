@@ -128,17 +128,25 @@ function GetQuestions() {
   };
 
   const handleSubmit = () => {
-    setSubmittedQuestion(true);
+    let answer = question.trim();
+    if(answer.charAt(answer.length -1) === "?"){
+      setSubmittedQuestion(answer);
+    }else{
+      answer = answer + "?";
+      setSubmittedQuestion(answer)
+    }
+    
   }
   return(
     <> 
-      <label>Ask your question: </label>
+      <label htmlFor="usermsg">Ask your question: </label>
       <textarea
         type="text"
         rows="3"
         cols="40"
         onChange={handleInputChange}
         value={question}
+        id="usermsg"
       ></textarea>
       <br />
       <button type="submit" onClick={handleSubmit}>
@@ -146,7 +154,7 @@ function GetQuestions() {
       </button>
       <br />
       {submittedQuestion && (
-          <p>Submitted Question: {question}?</p>
+          <p>Submitted Question: {submittedQuestion}</p>
        
       )}
     </>
@@ -156,22 +164,23 @@ function GetQuestions() {
 function GetComments() {
 
   const [comment, setComment] = useState(""); 
-  const [submittedComment, setSubmittedComment] = useState(false); 
+  const [submittedComment, setSubmittedComment] = useState(" "); 
 
   const handleInputChange = (event) => {
     setComment(event.target.value); 
   };
 
   const handleSubmit = () => {
-   setSubmittedComment(true)
+   setSubmittedComment("//" + comment)
   };
   return(
     <> 
-      <label>Leave your comment: </label>
+      <label htmlFor="usercnt">Leave your comment: </label>
       <textarea
         type="text"
         rows="3"
         cols="40"
+        id="usercnt"
         onChange={handleInputChange}
         value={comment}
       ></textarea>
@@ -180,7 +189,7 @@ function GetComments() {
         Submit Comment
       </button>
       <br />
-      {submittedComment && (<p>Submitted Comment: // {comment}</p> )}
+      {submittedComment && (<p>Submitted Comment: {submittedComment}</p> )}
       
      
     </>
