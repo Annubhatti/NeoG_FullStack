@@ -1,18 +1,15 @@
+import { use } from "react";
 import "./App.css"
 import { useState } from 'react'
 
 
 
-const ContactDetails = () => {
+const ValidateNumber = () => {
   const [number, setNumber] = useState();
 
-  const inputHandler = (event) => {
-      setNumber(event.target.value)
-  }
-
-  const validatePhoneNumber = () =>{
-    const phnNumRegex = /^[0-9]{10}$/;
-    if (phnNumRegex.test(number)) {
+  const validateHandler = () =>{
+    
+    if (number.length === 10) {
       alert("Valid Phone Number");
     } else {
       alert("Invalid Phone Number. Please enter a 10-digit number.");
@@ -21,23 +18,23 @@ const ContactDetails = () => {
 
   return(
     <div>
-      <label htmlFor="userContact">Enter your phone number: </label>
-      <input id="userContact" onChange={inputHandler}/>
-      <button onClick={validatePhoneNumber}>Validate Phone Number</button>
+      <label htmlFor="usernumber">Enter your phone number: </label>
+      <input id="usernumber" onChange={(event) => setNumber(event.target.value)}/>
+      <button onClick={validateHandler}>Validate Phone Number</button>
     </div>
   )
 }
 
-const UserPassword = () => {
+const ValidatePassword = () => {
   const [password, setPassword] = useState();
   
     const inputHandler = (event) => {
       setPassword(event.target.value)
     }
   
-    const validatePassWord = () =>{
+    const passWordHandler = () =>{
       
-      if (password.length >= 8) {
+      if (password.length > 8) {
         alert("Password is Strong");
       } else {
         alert("Password is Weak. Please use at least 8 characters.");
@@ -45,41 +42,86 @@ const UserPassword = () => {
     }
   return(
     <div>
-      <label htmlFor="userPassword">Enter your password: </label>
-      <input id="userPassword" type="password" onChange={inputHandler}/>
-      <button onClick={validatePassWord}>Check Password Strength</button>
+      <label htmlFor="userpassword">Enter your password: </label>
+      <input id="userpassword" type="password" onChange={inputHandler}/>
+      <button onClick={passWordHandler}>Check Password Strength</button>
     </div>
   )
 }
 
-const UserDOB = () => {
-  const [birth, setBirthDate] = useState();
+function CalculateAge() {
+  const [age, setAge] = useState();
+
+  const setAgeHandler = (event) => {
+    const birthDate = event.target.value; // YYYY-MM-DD format
+    const yearOfBirth = birthDate.split("-")[0]; // Extract the year
+    setAge(yearOfBirth);
+  };
+
+  const ageHandler = () => {
+    const currentYear = new Date().getFullYear(); // Get current year dynamically
+    const calculatedAge = currentYear - age; 
+    alert(`You are ${calculatedAge} years old`); // Use calculatedAge here
+  };
+
+  return (
+    <>
+      <label htmlFor="userAge">Enter your birthday: </label>
+      <input type="date" id="userAge" onChange={setAgeHandler} />
+      <button onClick={ageHandler}>Calculate Age</button>
+    </>
+  );
+}
+
+
+const ShowColors = () => {
+
+  const [color, setColor] = useState(" ");
+  const [displayColor, setDisplayColor] = useState("");
+
+  const setcolorHandler = (event) =>{
+    setColor(event.target.value);
+  }
+
+  const showHandler = () => {
+    setDisplayColor(color)
+
+  }
 
   return(
     <div>
-      <label htmlFor="userdob">Enter your birthdate: </label>
-      <input id="userdob" type="date"/>
-      <button onClick={}>Calculate Age</button>
+      <label htmlFor="usercolor">Enter your favorite color: </label>
+      <input id="usercolor" onChange={setcolorHandler} />
+      <button onClick={showHandler}>Display color</button>
+      <br /> <br />
+       {displayColor && (<p>Your favourite Color is {displayColor}</p>)}
     </div>
   )
 }
 
-const FavColors = () => {
-  return(
-    <div>
-      <label htmlFor="selecedClr">Enter your favorite color: </label>
-      <input id="selecedClr"/>
-      <button>Check Password Strength</button>
-    </div>
-  )
-}
+
 
 const UserQuery = () => {
+
+  const [query, setQuery] = useState();
+  const [displayQuery, setDisplayQuery] = useState("");
+
+  const setqueryHandler =(event) =>{
+    setQuery(event.target.value);
+  }
+
+  const showHandler = () =>{
+    setDisplayQuery(query);
+
+  }
+
   return(
     <div>
       <label htmlFor="userquery">Enter your search query: </label>
-      <input id="userquery"/>
-      <button>Search</button>
+      <input id="userquery" onChange={setqueryHandler}/>
+      <button onClick={showHandler} >Search</button>
+      <br /> <br />
+      {displayQuery && (<p>Searching for: {displayQuery}</p>)}
     </div>
   )
 }
@@ -90,14 +132,15 @@ const App = () => {
   return (
     <div>
       <main>
-          <ContactDetails />
+          <ValidateNumber />
           <br />
-          <UserPassword />
+          <ValidatePassword />
           <br />
-          <UserDOB />
+          <CalculateAge />
           <br />
-          <FavColors />
-          <br />
+          <br /> 
+          <ShowColors />
+          <br /> 
           <UserQuery />
       </main>
     </div>
