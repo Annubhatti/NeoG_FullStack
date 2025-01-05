@@ -1,120 +1,50 @@
-import { useState } from "react";
+
 import "./App.css";
 
-function ShowRecipe() {
-  const [recipelist, setRecipelist] = useState([]);
-  const [final, setFinallist] = useState([]);
+function MakeQuizApp(){
 
-  const listHandler = (event) => {
-    const input = event.target.value;
-    const stp = input.split(". ");
-    setRecipelist(stp); // mistake was i was returning and not set  updating.
-  }
-
-
-  const btnHandler = () => {
-    let ans = recipelist.map((word, index) => (
-        <li key={index}>{word}</li>
-      ) )
-      setFinallist(ans)
-  }
-
-  return (
-    <>
-      <label htmlFor="uselist">Enter the recipe: </label>
-      <textarea
-        type="text"
-        id="uselist"
-        rows={"5"}
-        cols={"50"}
-        onChange={listHandler}
-      />
-      <button onClick={btnHandler}>Save Recipe</button>
-      <br /> <br />
-      {final.length > 0 && <ol>{final}</ol>}
-    </>
-  );
-}
-
-function Diary() {
-
-  const [feed, setfeed] =  useState();
-  const [newfeed, setnewfeed] = useState();
+  // const questions = [
+  //   {
+  //     id: 1,
+  //     question: "What is 2 + 2?",
+  //     options: ["3", "4", "5"],
+  //     correctAnswer: "4",
+  //   },
+  //   {
+  //     id: 2,
+  //     question: "What is the capital of France?",
+  //     options: ["London", "Paris", "Berlin"],
+  //     correctAnswer: "Paris",
+  //   },
+  //   {
+  //     id: 3,
+  //     question: 'Who wrote "To Kill a Mockingbird"?',
+  //     options: ["Harper Lee", "J.K. Rowling", "Stephen King"],
+  //     correctAnswer: "Harper Lee",
+  //   },
+  // ];
 
   return(
     <div>
-      <label htmlFor="usefeed">Enter the recipe: </label>
-      <textarea
-        type="text"
-        id="usefeed"
-        rows={"5"}
-        cols={"50"}
-        onChange={(e) => setfeed(e.target.value)}
-      />
-      <button onClick={() => setnewfeed(feed)}>Submit</button>
-      {newfeed && (
-        <p>
-          <i>Your Diary: {newfeed}</i>
-        </p>
-      )}
+        <h1>Quiz App</h1>
+
+        <label>What is 2 + 2?</label>
+        <br />
+        <input type="radio" name="ques" value="3" /> 3
+        <br />
+        <input type="radio" name="ques" value="4" /> 4
+        <br />
+        <input type="radio" name="ques" value="5" /> 5
+        <br /> <br />
+        <button>Next</button>
+
     </div>
   )
-
 }
-
-
-function Food() {
-
-  const [food, setfood] =  useState([]);
-  const [final, setfinal] = useState([]);
-
-  const setHandle = (event) => {
-    const fod = event.target.value; // get the input value
-    const ans = fod.split(",  ");
-    setfood(ans);
-  }
-
-  const foodHandler = () => {
-    setfinal(food); // directly store the array in final statate
-  }
-
-  return(
-    <div>
-      <label htmlFor="usefood">Enter the list of food: </label>
-      <textarea
-        type="text"
-        id="usefood"
-        rows={"5"}
-        cols={"50"}
-        onChange={setHandle}
-      />
-      <button onClick={foodHandler}>Display Items</button>
-      {
-        final.length > 0 && (
-          <ul>
-            {final.map((item, index) => (
-              <li key={index}>{item}</li> //dynamicaly rendre list items
-            ))}
-          </ul>
-        )
-      }
-    </div>
-  )
-
-}
-
-
-
 export default function App() {
   return (
     <>
-    <br />
-      <ShowRecipe />
-      <br /> <br />
-      <Diary />
-      <br /> <br />
-      <Food />
-      
+    <MakeQuizApp />
     </>
   );
 }
