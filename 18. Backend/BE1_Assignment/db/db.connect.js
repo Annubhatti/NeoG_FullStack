@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const mongoUrl = process.env.MONGODB;
+const mongoUri = process.env.MONGODB;
 
 const initializeDatabase = async () => {
-  await  mongoose.connect(mongoUrl)
+ await mongoose
+    .connect(mongoUri)
     .then(() => {
-        console.log("Connected to Database");
+      console.log("Connected to Database");
     })
     .catch((error) => {
-        console.log("Error connecting to Database", error);
-    }
-    )
-}
+      console.log("Error connecting to Database", error);
+    })
+};
 
 module.exports = {initializeDatabase};
