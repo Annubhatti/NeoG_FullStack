@@ -1,50 +1,41 @@
+import React from "react";
 
-import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import useFetch from "./hooks/useFetch";
 
-function MakeQuizApp(){
-
-  // const questions = [
-  //   {
-  //     id: 1,
-  //     question: "What is 2 + 2?",
-  //     options: ["3", "4", "5"],
-  //     correctAnswer: "4",
-  //   },
-  //   {
-  //     id: 2,
-  //     question: "What is the capital of France?",
-  //     options: ["London", "Paris", "Berlin"],
-  //     correctAnswer: "Paris",
-  //   },
-  //   {
-  //     id: 3,
-  //     question: 'Who wrote "To Kill a Mockingbird"?',
-  //     options: ["Harper Lee", "J.K. Rowling", "Stephen King"],
-  //     correctAnswer: "Harper Lee",
-  //   },
-  // ];
-
-  return(
-    <div>
-        <h1>Quiz App</h1>
-
-        <label>What is 2 + 2?</label>
-        <br />
-        <input type="radio" name="ques" value="3" /> 3
-        <br />
-        <input type="radio" name="ques" value="4" /> 4
-        <br />
-        <input type="radio" name="ques" value="5" /> 5
-        <br /> <br />
-        <button>Next</button>
-
-    </div>
-  )
-}
-export default function App() {
-  return (
-    <>
-    <MakeQuizApp />
-    </>
+const App = () => {
+  const { data, loading, error, fetchData} = useFetch(
+    'https://randomuser.me/api/'
   );
-}
+  console.log(data);
+  return (
+    <div className="container py-4">
+
+      <h1>Random User API</h1>
+      <button className="btn btn-info" onClick={fetchData}>Get Random User</button>
+      {loading && <p>Loading...</p>}
+      {error && <p>An error occurred while fetching data.</p>}
+      
+      {data &&
+         data.results.map((user) => (
+           <div key={user.id.value} className="my-4">
+            <p>
+              <b>Name: </b>
+              {user.name.first} {user.name.last}
+            </p>
+            <p>
+              <b>Email: </b>
+              {user.email}
+            </p>
+            <p>
+              <b>City: </b>
+              {user.location.city}
+            </p>
+           </div>
+        )
+        )}
+    </div>
+  );
+};
+
+export default App;

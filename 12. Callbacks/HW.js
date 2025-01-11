@@ -1,5 +1,7 @@
 /**
- * 1. Implement a getUserName function that takes user's first name and  a callback as parameter. Use the getUserName function to use the callback function to display a personalized greeting message with full name of the user. 
+ * 1. Implement a getUserName function that takes user's first name and
+ *   a callback as parameter. Use the getUserName function to use the callback function
+ *  to display a personalized greeting message with full name of the user. 
 
 // function call code
 getUserName("John", greetUser);

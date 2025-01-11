@@ -2,12 +2,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import Features from './pages/features.jsx'
-import Specifications from './pages/specifications.jsx'
 import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Optional Bootstrap JS
 import "./index.css";
-
+import Employees from "./pages/Employees";
+import EmployeeDetails from "./pages/EmployeeDetails"
+import Report from "./pages/Report"
 
 const router = createBrowserRouter([
 
@@ -16,12 +16,16 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/features",
-    element: <Features />,
+    path: "/employees",
+    element: <Employees />,
   },
   {
-    path: "specifications",
-    element: <Specifications />
+    path: "employees/:empId",
+    element: <EmployeeDetails />
+  },
+  {
+    path: "/report",
+    element: <Report />
   }
 
 ])
