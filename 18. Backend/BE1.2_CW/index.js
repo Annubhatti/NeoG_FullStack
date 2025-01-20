@@ -1,36 +1,36 @@
 const { initializeDatabase } = require("./db/db.connect");
-const fs = require("fs");
-const Movie = require("./models/movies.models");
 
+const fs = require("fs");
+const Movie = require("./models/movie.models");
 initializeDatabase();
 
-const jsonData = fs.readFileSync("d:/backend/BE1.2_CW/movies.json");
+const jsonData = fs.readFileSync("movies.json", "utf-8");
 
 const moviesData = JSON.parse(jsonData);
 
-const seedData = () => {
-  try {
-    for (const movie of moviesData) {
-      const newMovie = new Movie({
-        title: movie.title,
-        releaseYear: movie.releaseYear,
-        genre: movie.genre,
-        director: movie.director,
-        actors: movie.actors,
-        language: movie.language,
-        country: movie.country,
-        rating: movie.rating,
-        plot: movie.plot,
-        awards: movie.awards,
-        posterUrl: movie.posterUrl,
-        trailerUrl: movie.trailerUrl,
-      });
-      newMovie.save();
-      console.log("Movie Data: ", newMovie.title);
+function seedData() {
+    try {
+      for (const movieData of moviesData) {   //looping to all the array 
+        const newMovie = new Movie({   // every time i make new daata i took the instance of the movie object 
+          title: movieData.title,
+          releaseYear: movieData.releaseYear,
+          genre: movieData.genre,
+          director: movieData.director,
+          actors: movieData.actors,
+          language: movieData.language,
+          country: movieData.country,
+          rating: movieData.rating,
+          plot: movieData.plot,
+          awards: movieData.awards,
+          posterUrl: movieData.posterUrl,
+          trailerUrl: movieData.trailerUrl,
+        });
+      console.log(newMovie.title);
+      newMovie.save(); // save to the db
+      }
+    } catch (error) {
+      console.log("Error seeding the data", error);
     }
-  } catch (error) {
-    console.log(" Error seeding the data ", error);
   }
-};
-
-seedData();
+  
+  seedData();  //callng the funcon 

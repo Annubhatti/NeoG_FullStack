@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const Books = require("./models/books.models");
 
-const jsonData = fs.readFileSync("BE1.2_HW2/booksData.json");
+const jsonData = fs.readFileSync("./booksData.json");
 const booksData = JSON.parse(jsonData);
 
 const seedData = () => {
