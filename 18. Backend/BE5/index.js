@@ -1,9 +1,9 @@
-const {intilaizedb} = require("./db/db.connect");
+const {initializeDatabase} = require("./db/db.connect");
 
 const Post = require("./models/post.model");
 const User = require("./models/user.model");
 
-intilaizedb();
+initializeDatabase();
 
 
 const useData = {
@@ -21,14 +21,14 @@ const addUser = async () =>{
 };
 
 // added user to db
-//addUser();
+addUser();
 
 // create a post
 
 const postData = {
     title: "Greeting",
     content: "Have a good day!",
-    author: "fgfhgjhgk234hjhhkjhk"
+    author: "678e43bee3b66b100288aed5"
 }
 
 const addPost = async () =>{
@@ -46,12 +46,12 @@ addPost();
 // get all the post  supose i'm making the frontend and i have to list the all the post
 // and get the user who has posted that
 
-// const getAllPosts = async () => {
-//     try {
-//         const allPosts = await Post.find();
-//         console.log("All Posts: ", allPosts);
-//     } catch (error) {
-//         console.log("error", error);
-//     }
-// }
-// getAllPosts();
+const getAllPosts = async () => {
+    try {
+        const allPosts = await Post.find().populate("author");
+        console.log("All Posts: ", allPosts);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+getAllPosts();

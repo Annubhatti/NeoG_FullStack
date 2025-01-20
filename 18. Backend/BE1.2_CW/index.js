@@ -25,7 +25,7 @@ function seedData() {
           posterUrl: movieData.posterUrl,
           trailerUrl: movieData.trailerUrl,
         });
-      console.log(newMovie.title);
+      //console.log(newMovie.title);
       newMovie.save(); // save to the db
       }
     } catch (error) {
