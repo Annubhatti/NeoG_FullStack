@@ -80,7 +80,7 @@ const MovieDetails = () => {
 
       return(
         <div>
-        <h2>Profile Details</h2>
+        <h2>Movie Details</h2>
         <p><strong>Title: </strong>{movie.title}</p>
         <p><strong>Director: </strong>{movie.director}</p>
         <p><strong>Year: </strong>{movie.year}</p>

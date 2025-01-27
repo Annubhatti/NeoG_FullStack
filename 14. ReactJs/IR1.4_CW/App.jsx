@@ -16,6 +16,7 @@ const Header = () => {
     )
 }
 
+//so we can use destructuring here
 const EmployeeDetails = ({employee}) =>{
     return(
         <div>
@@ -50,6 +51,7 @@ export default function App(){
         <div>
             <Header />
         <main>
+            {/* we are passing object  */}
             <EmployeeDetails employee={employee} />
         </main>
         <Footer />

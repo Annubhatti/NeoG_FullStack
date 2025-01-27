@@ -11,7 +11,7 @@ const ProductList = ({products}) => {
   ))
   return (
     <div>
-      <h2>Producta</h2>
+      <h2>Products</h2>
       {productListing}
     </div>
   )

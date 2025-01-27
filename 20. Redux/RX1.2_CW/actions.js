@@ -1,6 +1,7 @@
 export const ADD_TODO = "todos/added"
 export const REMOVE_TODO = "todos/remove"
 
+//action creators to define the actions dispatched to the reducer.
 export const addTodo = (text) => ({
     type: ADD_TODO,
     payload: text
