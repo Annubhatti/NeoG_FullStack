@@ -13,7 +13,7 @@ const addTodos = document.querySelector("#addTodo");
 const todoList = document.querySelector("#todoList");
 
 const addTodoHandler = () =>{
-    const todoValue = todoInput.ariaValueMax;
+    const todoValue = todoInput.value;
     if(todoValue){
         store.dispatch(addTodo(todoValue));
     }
