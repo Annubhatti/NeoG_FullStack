@@ -11,143 +11,166 @@
       crossorigin="anonymous"
     />
     <style>
-      #successMessage {
+      #success {
+        display: none;
         color: green;
-        margin-top: 10px;
-      }
-      .errorMessage {
-        color: red;
       }
     </style>
   </head>
+  <body>
+    <div class="container my-5">
+      <h1>Restaurant Data</h1>
 
-  <body class="container mt-4">
-    <h1>Restaurant Data</h1>
-    <div class="mt-3">
-      <h2>Get Restaurants</h2>
-      <button id="getDataBtn" class="btn btn-primary">Get Restaurants</button>
+      <h2 class="my-4">Get Restaurant</h2>
+
+      <button id="getRestaurant" class="btn btn-primary">Get Restaurant</button>
+
+      <div id="restaurantContainer" class="row my-3"></div>
+
+      <h2 class="my-4">Add Restaurant</h2>
+
+      <form id="restaurantForm">
+        <label for="name">Name:</label>
+        <div class="input-group">
+          <input type="text" class="form-control mb-3" id="name" />
+        </div>
+        <label for="cuisine">Cuisine:</label>
+        <div class="input-group">
+          <input type="text" class="form-control mb-3" id="cuisine" />
+        </div>
+        <label for="address">Address:</label>
+        <div class="input-group">
+          <input type="text" class="form-control mb-3" id="address" />
+        </div>
+        <label for="city">City:</label>
+        <div class="input-group">
+          <input type="text" class="form-control mb-3" id="city" />
+        </div>
+        <label for="rating">Rating:</label>
+        <div class="input-group">
+          <input type="number" class="form-control mb-3" id="rating" />
+        </div>
+        <label for="picture">Restaurant Picture:</label>
+        <div class="input-group">
+          <input type="url" class="form-control mb-3" id="picture" />
+        </div>
+
+        <button type="addRestaurant" class="btn btn-success">
+          Add Restaurant
+        </button>
+      </form>
+
+      <div id="success" class="my-3">Restaurant Added Successfully</div>
     </div>
-    <div id="getDataContainer" class="mt-3"></div>
-
-    <form id="postDataForm" class="mt-4">
-      <h2>Add Restaurants</h2>
-      <div class="mb-3">
-        <label for="name" class="form-label">Name:</label>
-        <input type="text" id="name" class="form-control" required />
-      </div>
-      <div class="mb-3">
-        <label for="cuisine" class="form-label">Cuisine:</label>
-        <input type="text" id="cuisine" class="form-control" required />
-      </div>
-      <div class="mb-3">
-        <label for="address" class="form-label">Address:</label>
-        <input type="text" id="address" class="form-control" required />
-      </div>
-      <div class="mb-3">
-        <label for="city" class="form-label">City:</label>
-        <input type="text" id="city" class="form-control" required />
-      </div>
-      <div class="mb-3">
-        <label for="rating" class="form-label">Rating:</label>
-        <input type="number" id="rating" class="form-control" required />
-      </div>
-      <div class="mb-3">
-        <label for="restaurantPicture" class="form-label">Restaurant Picture:</label>
-        <input type="url" id="restaurantPicture" class="form-control" placeholder="URL" required />
-      </div>
-      <button id="addRestaurantBtn" type="submit" class="btn btn-success">
-        Add Restaurant
-      </button>
-    </form>
-
-    <div id="loadingMessage" class="mt-3"></div>
-    <div id="successMessage" class="mt-3"></div>
-    <div id="errorMessage" class="errorMessage"></div>
 
     <script>
-      const apiUrl = "https://zomato-express-student-neog.replit.app/restaurants";
+      const restaurantForm = document.querySelector("#restaurantForm");
+      const success = document.querySelector("#success");
+      const restaurantContainer = document.querySelector(
+        "#restaurantContainer"
+      );
 
-      // DOM Elements
-      const name = document.getElementById("name");
-      const cuisine = document.getElementById("cuisine");
-      const address = document.getElementById("address");
-      const city = document.getElementById("city");
-      const rating = document.getElementById("rating");
-      const restaurantPicture = document.getElementById("restaurantPicture");
-      const getDataBtn = document.getElementById("getDataBtn");
-      const getDataContainer = document.getElementById("getDataContainer");
-      const postDataForm = document.getElementById("postDataForm");
-      const successMessage = document.getElementById("successMessage");
-      const loadingMessage = document.getElementById("loadingMessage");
-      const errorMessage = document.getElementById("errorMessage");
+      const getRestaurant = document.querySelector("#getRestaurant");
 
-      // Get Restaurants
-      getDataBtn.addEventListener("click", () => {
-        getDataContainer.innerHTML = ""; // Clear container before fetching data
-        fetch(apiUrl)
-          .then((response) => response.json())
-          .then((data) => {
-            if (Array.isArray(data) && data.length > 0) {
-              for (let i = 0; i < data.length; i++) {
-                const restaurant = data[i];
-                const restaurantCard = document.createElement("div");
-                restaurantCard.classList.add("card", "mb-2");
-                restaurantCard.innerHTML = `
-                <div class="row row-cols-3">
-                  <div class="col">
-                  <div class="card-body">
-                    <img src="${restaurant.restaurantPicture}" alt="${restaurant.name}" class="img-fluid" />
-                    <h5 class="card-title">${restaurant.name}</h5>
-                    <p class="card-text"><strong>Cuisine:</strong> ${restaurant.cuisine}</p>
-                    <p class="card-text"><strong>Address:</strong> ${restaurant.address}, ${restaurant.city}</p>
-                    <p class="card-text"><strong>Rating:</strong> ${restaurant.rating}</p>
-                    </div>
-                  </div>
-                  </div>
-                `;
-                getDataContainer.appendChild(restaurantCard);
-              }
-            } else {
-              getDataContainer.textContent = "No restaurants found.";
-            }
-          })
-          .catch(() => {
-            getDataContainer.textContent = "Failed to fetch restaurants.";
-          });
-      });
+      const apiURL =
+        "https://zomato-express-student-neog.replit.app/restaurants";
 
-      // Add Restaurant
-      postDataForm.addEventListener("submit", (event) => {
+      restaurantForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        loadingMessage.textContent = "Adding Restaurant...";
-        successMessage.textContent = "";
-        errorMessage.textContent = "";
 
-        const requestData = {
-          name: name.value.trim(),
-          cuisine: cuisine.value.trim(),
-          address: address.value.trim(),
-          city: city.value.trim(),
-          rating: rating.value.trim(),
-          restaurantPicture: restaurantPicture.value.trim(),
+        restaurantContainer.innerHTML = "";
+
+        const name = document.querySelector("#name");
+        const cuisine = document.querySelector("#cuisine");
+        const address = document.querySelector("#address");
+        const city = document.querySelector("#city");
+        const rating = document.querySelector("#rating");
+        const picture = document.querySelector("#picture");
+
+        const restaurantData = {
+          name: name.value,
+          cuisine: cuisine.value,
+          address: address.value,
+          city: city.value,
+          rating: rating.value,
+          restaurantPicture: picture.value,
         };
 
-        fetch(apiUrl, {
+        fetch(apiURL, {
           method: "POST",
+          body: JSON.stringify(restaurantData),
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(requestData),
         })
-          .then((response) => response.json())
-          .then(() => {
-            successMessage.textContent = "Restaurant added successfully!";
-            loadingMessage.textContent = "";
-            postDataForm.reset();
+          .then((res) => {
+            return res.json();
           })
-          .catch(() => {
-            errorMessage.textContent = "Failed to add restaurant.";
-            loadingMessage.textContent = "";
+          .then((data) => {
+            if (data) {
+              success.style.display = "block";
+              restaurantForm.reset();
+            } else {
+              success.textContent = "Failed to Send Data";
+            }
+          })
+          .catch((error) => {
+            success.textContent = "Error occurred while sending data";
+          });
+      });
+
+      getRestaurant.addEventListener("click", () => {
+        success.style.display = "none";
+
+        fetch(apiURL)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            if (data) {
+              for (let i = 0; i < data.length; i++) {
+                const col = document.createElement("div");
+                col.className = "col-md-4";
+
+                const card = document.createElement("div");
+                card.className = "card my-3 ";
+
+                const img = document.createElement("img");
+                img.src = `${data[i].restaurantPicture}`;
+                img.alt = `${data[i].name}`;
+                img.className = "card-img-top img-fluid";
+
+                const cardBody = document.createElement("div");
+                cardBody.className = "card-body";
+
+                const cardTitle = document.createElement("h5");
+                cardTitle.className = "card-title";
+                cardTitle.textContent = ` ${data[i].name}`;
+
+                const cuisine = document.createElement("p");
+                cuisine.className = "card-text";
+                cuisine.innerHTML = `<b>Cuisine: </b>${data[i].cuisine}`;
+
+                const address = document.createElement("p");
+                address.className = "card-text";
+                address.innerHTML = ` <b>Address: </b>${data[i].address}`;
+
+                const rating = document.createElement("p");
+                rating.className = "card-text";
+                rating.innerHTML = ` <b>Rating: </b>${data[i].rating}`;
+
+                cardBody.appendChild(cardTitle);
+                cardBody.appendChild(cuisine);
+                cardBody.appendChild(address);
+                cardBody.appendChild(rating);
+
+                card.appendChild(img);
+                card.appendChild(cardBody);
+
+                col.appendChild(card);
+                restaurantContainer.appendChild(col);
+              }
+            }
           });
       });
     </script>

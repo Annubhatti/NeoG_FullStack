@@ -6,83 +6,71 @@
     <title>Fruit Basket Management</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js
+"></script>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg text-secondary">
-        <div class="container">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid px-4">
           <a class="navbar-brand" href="index.html">Fruit Basket Management</a>
           <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          >
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="justify-content-end">
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link active" aria-current="page" href="index.html"
+                  >Home</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="fruitsList.html">Fruits List</a>
+                <a class="nav-link" href="fruitsList.html">Fruit List </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="addFruits.html">Add Fruits</a>
+                <a class="nav-link" href="addFruits.html">Add Fruit</a>
               </li>
             </ul>
           </div>
         </div>
-      </div>
       </nav>
     </header>
 
     <main>
-      <section class="container mt-3">
-        <section class="bg-light">
-          <div class="card border-0 bg-body-secondary text-center" id="playersCard">
-            <div class="card-body text-center p-5">
-              <h1 class="card-title mb-4">
-                Welcome to Fruit Basket Management
-              </h1>
-              <p class="card-text fs-5">
-                Manage fruit records with this simple management system.
-              </p>
-            </div>
-          </div>
-        </section>
+      <section class="my-3 mx-5 text-center bg-body-secondary py-5">
+        <h3 class="display-5 fw-normal py-3">
+          Welcome To Fruit Basket Management
+        </h3>
+        <p class="fs-5 fw-normal">
+          Manage fruit records With this simple management system
+        </p>
       </section>
 
-      <section class="container">
-        <section class="py-5 bg-light">
-          <div class="container text-center">
-            <h2>Fruits List</h2>
-            <p>View and manage fruits in your system.</p>
-            <a href="fruitsList.html" id="fruitsListBtn" class="btn btn-primary"
-              >Fruits List</a
-            >
-          </div>
+      <section class="py-5 bg-body-light text-center">
+        <h2>Fruits List</h2>
+        <p>View and manage fruit list in your system</p>
+        <a href="fruitList.html" class="btn btn-primary">Fruits List</a>
+      </section>
 
-          <div class="container py-5 text-center">
-            <h2>Manage Fruits</h2>
-            <p>Add a new frit to the system with its details.</p>
-            <a href="addFruits.html" id="addFruitstBtn" class="btn btn-primary"
-              >Add Fruits</a
-            >
-          </div>
-        </section>
+      <section class="pb-5 text-center">
+        <h2>Manage Fruits</h2>
+        <p>Add a new fruit to the system with its details</p>
+        <a href="addFruits.html" class="btn btn-primary">Add Fruits</a>
       </section>
     </main>
 
-    <footer class="py-3">
-      <div class="text-center">
+    <footer class="bg-light mt-4 py-4 text-dark">
+      <div class="container text-center">
         <p>&copy; 2024 Fruit Basket Management. All rights reserved.</p>
       </div>
     </footer>

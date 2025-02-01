@@ -3,52 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Computer Management</title>
+    <title>Document</title>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js
+"></script>
+
     <style>
       #loading {
         display: none;
-        color: blue;
       }
       #success {
         display: none;
-        color: green;
-      }
-      #error {
-        display: none;
-        color: red;
       }
     </style>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg text-secondary">
-        <div class="container">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid px-4">
           <a class="navbar-brand" href="index.html">Computer Management</a>
           <button
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
             aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav ms-auto">
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNav">
+            <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link active" aria-current="page" href="index.html"
+                  >Home</a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="computersList.html">Computers List</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="addComputers.html">Add Computers</a>
+                <a class="nav-link" href="#add">Add Computer</a>
               </li>
             </ul>
           </div>
@@ -56,87 +56,91 @@
       </nav>
     </header>
 
-    <main class="container mt-4">
-      <h1>Add Computers</h1>
+    <main>
+      <div class="container my-4" id="add">
+        <h1 class="mb-4">Add Computers</h1>
 
-      <div id="loading">Adding Computers Data...</div>
-      <div id="success">Computers added successfully!</div>
-      <div id="error">Failed to add computer data. Please try again.</div>
-
-      <form id="addComputersDataForm">
-        <div class="mt-3">
-          <div class="mb-3">
-            <label for="computerName">Computer Name:</label>
-            <input type="text" id="computerName" class="form-control" required />
-          </div>
-          <div class="mb-3">
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" class="form-control" required />
-          </div>
-          <div class="mb-3">
-            <label for="category">Category:</label>
-            <select id="category" class="form-select">
-              <option value="laptop">Laptop</option>
-              <option value="desktop">Desktop</option>
-              <option value="tablet">Tablet</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="manufactureDate">Manufacture Date:</label>
-            <input type="date" id="manufactureDate" class="form-control" required />
-          </div>
-          <button type="submit" class="btn btn-primary">Add Computer</button>
+        <div id="loading" class="py-2 px-4 my-4 bg-info">Saving Data . . .</div>
+        <div id="success" class="py-2 px-4 my-4 bg-body-secondary">
+          Computer Added Successfully . . .
         </div>
-      </form>
+
+        <form id="computerForm">
+          <label for="name">Computer Name: </label>
+          <div class="input-group">
+            <input type="text" id="name" class="form-control mb-3" />
+          </div>
+          <label for="quantity">Quantity: </label>
+          <div class="input-group">
+            <input type="number" id="quantity" class="form-control mb-3" />
+          </div>
+
+          <label for="category">Category: </label>
+          <select id="category" class="form-select mb-3">
+            <option value="Laptop">Laptop</option>
+            <option value="Desktop">Desktop</option>
+            <option value="Tablet">Tablet</option>
+          </select>
+
+          <label for="date">Manufacture Date: </label>
+          <div class="input-group">
+            <input type="date" id="date" class="form-control mb-3" />
+          </div>
+
+          <button class="btn btn-primary my-4" type="submit">
+            Add Computer
+          </button>
+        </form>
+      </div>
     </main>
 
     <script>
-      const computerName = document.querySelector("#computerName");
-      const quantity = document.querySelector("#quantity");
-      const category = document.querySelector("#category");
-      const manufactureDate = document.querySelector("#manufactureDate");
-      const successContainer = document.querySelector("#success");
-      const loadingContainer = document.querySelector("#loading");
-      const errorContainer = document.querySelector("#error");
-      const addComputersDataForm = document.querySelector("#addComputersDataForm");
-      const apiUrl = "https://computer-backend-student-neog.replit.app/computers";
+      const computerForm = document.querySelector("#computerForm");
+      const success = document.querySelector("#success");
+      const loading = document.querySelector("#loading");
 
-      addComputersDataForm.addEventListener("submit", function (event) {
+      const apiURL =
+        " https://computer-backend-student-neog.replit.app/computers";
+
+      computerForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        // Show loading message
-        loadingContainer.style.display = "block";
-        successContainer.style.display = "none";
-        errorContainer.style.display = "none";
+        loading.style.display = "block";
 
-        const computersData = {
-          name: computerName.value.trim(),
-          quantity: parseInt(quantity.value.trim(), 10),
+        const name = document.querySelector("#name");
+        const quantity = document.querySelector("#quantity");
+        const category = document.querySelector("#category");
+        const date = document.querySelector("#date");
+
+        const computerData = {
+          name: name.value,
+          quantity: quantity.value,
           category: category.value,
-          manufactureDate: manufactureDate.value,
+          manufactureDate: date.value,
         };
 
-        fetch(apiUrl, {
+        console.log(computerData);
+
+        fetch(apiURL, {
           method: "POST",
-          body: JSON.stringify(computersData),
+          body: JSON.stringify(computerData),
           headers: {
-            "Content-Type": "application/json",
+            "content-type": "application/json",
           },
         })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            if (data) {
+              loading.style.display = "none";
+              success.style.display = "block";
+            } else {
+              loading.textContent = "Failed to add data";
             }
-            return response.json();
           })
-          .then(() => {
-            loadingContainer.style.display = "none";
-            successContainer.style.display = "block";
-            addComputersDataForm.reset();
-          })
-          .catch(() => {
-            loadingContainer.style.display = "none";
-            errorContainer.style.display = "block";
+          .catch((error) => {
+            loading.textContent = "Error Occurred while adding data";
           });
       });
     </script>
