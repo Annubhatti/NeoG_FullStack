@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
+    <Header />
       <div className="container py-4">
         <div>
           <img
@@ -35,7 +36,7 @@ const Home = () => {
           </Link>
         </div>
       </div>
-     
+     <Footer />
     </>
   );
 };
